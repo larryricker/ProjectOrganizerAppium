@@ -43,11 +43,11 @@ import com.google.gson.JsonParser;
 
 import io.appium.java_client.ios.IOSDriver;
 
-
 /**
- * Read property from the app.properties file 
- * The property capabilities will specify the name of the json file that sets the AppiumDriver capabilities
- * in the format used by Appium Desktop
+ * Read property from the app.properties file The property capabilities will
+ * specify the name of the json file that sets the AppiumDriver capabilities in
+ * the format used by Appium Desktop
+ * 
  * @author lawrencericker
  *
  */
@@ -60,49 +60,49 @@ public class Driver {
 		LOGGER.log(Level.INFO, "Driver() AppiumDriver");
 		final DesiredCapabilities capabilities = DesiredCapabilities.ipad();
 		JsonParser parser = new JsonParser();
-	       App.load();
-//	            Object obj = parser.parse(new FileReader(App.capabilities));
-		   Object obj = parser.parse(new InputStreamReader(Driver.class.getClassLoader().getResourceAsStream(App.capabilities)));
-		    JsonObject jsonObject = (JsonObject) obj;
-		    System.out.println(jsonObject);
-		    Set<Map.Entry<String,JsonElement>> capSet = jsonObject.entrySet();
-		    Iterator<Map.Entry<String,JsonElement>> capIter = capSet.iterator();
-		    Map.Entry<String,JsonElement> capable;
-		    while (capIter.hasNext()) {
-		    	capable = capIter.next();
-				LOGGER.log(Level.INFO, "Driver() AppiumDriver capable->" + capable.getKey() + ":" + capable.getValue());
-				capabilities.setCapability(capable.getKey(), capable.getValue());
-		    }
+		App.load();
+		// Object obj = parser.parse(new FileReader(App.capabilities));
+		Object obj = parser
+				.parse(new InputStreamReader(Driver.class.getClassLoader().getResourceAsStream(App.capabilities)));
+		JsonObject jsonObject = (JsonObject) obj;
+		System.out.println(jsonObject);
+		Set<Map.Entry<String, JsonElement>> capSet = jsonObject.entrySet();
+		Iterator<Map.Entry<String, JsonElement>> capIter = capSet.iterator();
+		Map.Entry<String, JsonElement> capable;
+		while (capIter.hasNext()) {
+			capable = capIter.next();
+			LOGGER.log(Level.INFO, "Driver() AppiumDriver capable->" + capable.getKey() + ":" + capable.getValue());
+			capabilities.setCapability(capable.getKey(), capable.getValue());
+		}
 		aDriver = new IOSDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 	}
 
 	public static Driver getSingletonFactory() throws MalformedURLException {
 		if (singletonFactory == null) {
-			if (singletonFactory == null) {
-				singletonFactory = new Driver();
-			}
+			singletonFactory = new Driver();
 		}
 		return singletonFactory;
 	}
-	
+
 	public static IOSDriver getDriver() throws MalformedURLException {
 		if (Driver.aDriver == null) {
 			new Driver();
 		}
 		return Driver.aDriver;
 	}
-	
+
 	public static boolean exists() {
 		return (Driver.aDriver != null);
 	}
-	
+
 	public static void destroy() throws MalformedURLException {
 		LOGGER.log(Level.INFO, "destroy()");
 		final WebDriver instanceOne = com.larryricker.Driver.getDriver();
 		WebDriver instanceTwo = null;
 		@SuppressWarnings("rawtypes")
 		final Constructor[] constructors = com.larryricker.Driver.class.getDeclaredConstructors();
-		for (@SuppressWarnings("rawtypes") final Constructor constructor : constructors) {
+		for (@SuppressWarnings("rawtypes")
+		final Constructor constructor : constructors) {
 			constructor.setAccessible(true);
 			instanceTwo = com.larryricker.Driver.getDriver();
 			break;
