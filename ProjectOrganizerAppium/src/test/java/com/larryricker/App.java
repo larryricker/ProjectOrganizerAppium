@@ -24,9 +24,12 @@ package com.larryricker;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.openqa.selenium.WebElement;
 
 public class App {
 		private static final Logger LOGGER = Logger.getLogger(App.class.getName());
@@ -64,6 +67,23 @@ public class App {
 				}
 			}
 		}
+	}
+	/**
+	 * click on element with accessibility id
+	 * @param using
+	 * @throws MalformedURLException
+	 */
+	public static void click(String using) throws MalformedURLException {
+		Driver.getDriver().findElementByAccessibilityId(using).click();
+	}
+	/**
+	 * find WebElement by accessibility id
+	 * @param using
+	 * @return
+	 * @throws MalformedURLException
+	 */
+	public static WebElement find(String using) throws MalformedURLException {
+		return Driver.getDriver().findElementByAccessibilityId(using);
 	}
 		
 }
