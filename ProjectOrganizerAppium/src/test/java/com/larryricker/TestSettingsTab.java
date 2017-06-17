@@ -27,94 +27,50 @@ import java.util.logging.Logger;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebElement;
-
-
 
 @Tag("ios")
 public class TestSettingsTab {
-	
-private static final Logger LOGGER = Logger.getLogger(TestSettingsTab.class.getName());
 
-@BeforeAll
-public static void setupBeforeClass() {
-	
-}
+	private static final Logger LOGGER = Logger.getLogger(TestSettingsTab.class.getName());
 
-@AfterAll
-public static void tearDownAfterClass() {
-	
-}
+	@BeforeAll
+	public static void setupBeforeClass() {
 
-@BeforeEach
-public void setup() throws MalformedURLException {
-	Org.gotoSettingsTableView();
-}
+	}
 
-@AfterEach
-public void cleanup() {
-	
-}
+	@AfterAll
+	public static void tearDownAfterClass() {
 
-@Test
-public void testSettingsTab() throws MalformedURLException {
-	// identify current app
-	String bundleId = Org.getBundleId();
-	Org.gotoSettingsTableView();
-	// verify upsell message
-	verifySettingsUpsellMessage();
-	// click on upsell and buy app - skip for now
-	// Click on rate our app
-//	App.click("	Rate our app"); // not testable at this time
-	// exit app rating
-	Org.shareAppFromSettingsTableView();
-	// restore purchases - skip for now
-	Org.exitSettingsTableView();	
-	// create a new project
-	Org.createNewProject("Enhancements");
-	Org.createNewProject("Uplift");
-	Org.createNewProject("Reskin");
-	Org.createNewProject("Search Optimization");
-	Org.createNewProject("Metrics");
-	Org.createNewProject("Defects");
-	Org.createNewProject("Human Factors");
-	Org.createNewProject("Routing");
-	Org.createNewProject("Automated Testing");
-	Org.createNewProject("Biometrics");	
-	Org.createNewProject("Content");
-	Org.createNewProject("Routing");
-	Org.createNewProject("Desktop");
-	Org.createNewProject("Upgrade");
-	Org.createNewProject("Integration");
-	// create a new status report
-	// create a new question
-	// reorder questions
-	// exit questions
-	// reorder status
-	// exit status
-	// reorder project
-	// search for a question
-	// drill down search to status
-	// drill down search to question
-	// delete a question
-	// exit question
-	// delete status
-	// exit status
-	// delete project
-	
-			
-			
-	
-}
+	}
 
-private void verifySettingsUpsellMessage() throws MalformedURLException {
-	WebElement upsell = App.find("Buy Progress Report Pro 4.99");
-	Assertions.assertEquals(upsell.getText(), upsell.getText(), "Upsell message is correct");
-}
+	@BeforeEach
+	public void setup() throws MalformedURLException {
+		Org.gotoSettingsTableView();
+	}
+
+	@AfterEach
+	public void cleanup() {
+
+	}
+
+	@Test
+	public void testSettingsTab() throws MalformedURLException {
+		// identify current app
+		String bundleId = Org.getBundleId();
+		Org.gotoSettingsTableView();
+		// verify upsell message
+		Org.verifySettingsUpsellMessage();
+		// click on upsell and buy app - skip for now
+		// Click on rate our app
+		// App.click(" Rate our app"); // not testable at this time
+		// exit app rating
+		Org.shareAppFromSettingsTableView();
+		// restore purchases - skip for now
+		Org.exitSettingsTableView();
+	}
 
 }

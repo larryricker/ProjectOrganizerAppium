@@ -29,6 +29,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 public class App {
@@ -83,7 +84,21 @@ public class App {
 	 * @throws MalformedURLException
 	 */
 	public static WebElement find(String using) throws MalformedURLException {
-		return Driver.getDriver().findElementByAccessibilityId(using);
+		WebElement thisElement = null;
+		try {
+			thisElement =  Driver.getDriver().findElementByAccessibilityId(using);
+		}
+		catch (NoSuchElementException e) {
+		}
+		return thisElement;
+	}
+	public static boolean exists(String using) throws MalformedURLException {
+		WebElement thisElement = find(using);
+		return thisElement != null;
+	}
+	public static void enterText(String using, String projectName) throws MalformedURLException {
+		WebElement projectNameEdit = find(using);
+		projectNameEdit.sendKeys(projectName);
 	}
 		
 }
