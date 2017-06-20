@@ -105,4 +105,21 @@ public class Org {
 		Assertions.assertEquals(upsell.getText(), upsell.getText(), "Upsell message is correct");
 	}
 
+	public static void addStatusReport(String statusReportName) throws MalformedURLException {
+		// create a new status report
+		App.click("Add");
+		// statusToAdd
+		App.enterText("statusToAdd", statusReportName);
+		// save status
+		App.click("Done");
+	}
+
+	public static void addTestCase(String statusReportTitle, String answer) throws MalformedURLException {
+		App.click("Add");
+		App.enterText("statusReportTitle", statusReportTitle);
+		App.enterText("questionTextField", "What is the test case?");
+		App.enterText("answerTextField", answer);
+		App.click("Done");
+	}
+
 }

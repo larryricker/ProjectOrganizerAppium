@@ -21,16 +21,27 @@ SOFTWARE.
  */
 package com.larryricker;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.TestReporter;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class App {
 		private static final Logger LOGGER = Logger.getLogger(App.class.getName());
@@ -98,7 +109,100 @@ public class App {
 	}
 	public static void enterText(String using, String projectName) throws MalformedURLException {
 		WebElement projectNameEdit = find(using);
+		projectNameEdit.clear();
 		projectNameEdit.sendKeys(projectName);
 	}
+	/**
+	 * Take a screen shot of the browser window regardless if an error has occurred
+	 * The parameter testReporter of type TestReporter is required to
+	 * allow the screen shot to display in jUnit5 html reports when 
+	 * run from the Jenkins server and merged with the the Add Attachments
+	 * plugin for Jenkins.
+	 * @param testReporter
+	 * @return 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
+	 * @throws WebDriverException 
+	 */
+	public static String snapAnyway(String screenName, TestReporter testReporter) throws WebDriverException, MalformedURLException, IOException {
+		String fileName = App.snapAnyway(screenName);
+		testReporter.publishEntry(screenName, "\r\n\r\n[[ATTACHMENT|" + fileName + "]]\r\n\r\n");;
+		return fileName;
+	}
+	
+	/**
+	 * Take a screen shot of the browser window regardless if an error has occurred
+	 * @param screenName
+	 * @return
+	 * @throws WebDriverException
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	private static String snapAnyway(String screenName) throws WebDriverException, MalformedURLException, IOException {
+		LOGGER.fine("snapAnyway()");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH_mm_ss");
+		// get current date
+		Calendar cal = Calendar.getInstance();
+		// move to same directory as the XML file to have Jenkins pick 
+//		it up
+		File directoryToCreate = new File(System.getProperty("user.dir")
+				+ File.separator + "build" + File.separator 
+				+ "test-results" + File.separator + "junit-platform"
+				);
+		if (directoryToCreate.exists() == false) {
+			LOGGER.fine("snapAnyway(); create directory " + directoryToCreate.mkdir());
+		}
+		else {
+			LOGGER.fine("snapAnyway() existing directory " + directoryToCreate.exists());
+		}
+		File imageCopy = new File(System.getProperty("user.dir")
+				+ File.separator + "build" + File.separator 
+				+ "test-results" + File.separator + "junit-platform"
+				+ File.separator + screenName + "_"
+				+ dateFormat.format(cal.getTime()).toString() + ".png");
+		// take screen shot directly to final resting place
+		FileOutputStream out = new FileOutputStream(imageCopy.getAbsolutePath().toString());
+		out.write(((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES));
+		out.close();
+		return imageCopy.getAbsolutePath().toString();
+	}
+	public static void waitForAccessibilityId(String using) throws InterruptedException, MalformedURLException {
+		LOGGER.info("waitForAccessibilityId(" + using + ")");
+		int count = 0;
+		WebElement thisElement = null;
+		do {
+			count++;
+			Thread.sleep(500);			
+			LOGGER.info("waitForAccessibilityId(" + using + ") count-> " + count);
+			thisElement = App.find(using);
+		} while(count < 20
+				&& thisElement != null
+				&& App.isDisplayed(thisElement));
+	}
+	/**
+	 * is element thisElement displayed on the screen
+	 * @param using
+	 * @return
+	 * @throws MalformedURLException
+	 */
+	public static boolean isDisplayed(WebElement thisElement) throws MalformedURLException {
+		return thisElement.isDisplayed();
+	}
+	/**
+	 * is element with accessibility id of using displayed on the screen
+	 * @param using
+	 * @return
+	 * @throws MalformedURLException
+	 */
+	public static boolean isDisplayed(String using) throws MalformedURLException {
+		return isDisplayed(App.find(using));
+	}
 		
+	
+	public static void waitForScreenToLoad(String using, int seconds) throws MalformedURLException{
+		LOGGER.info("waitForScreenToLoad(" + using + ", " + seconds + ")");
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),seconds);
+        wait.until(ExpectedConditions.visibilityOf(App.find(using)));
+	}
 }
