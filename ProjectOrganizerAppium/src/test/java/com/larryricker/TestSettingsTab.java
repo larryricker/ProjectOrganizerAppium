@@ -21,6 +21,7 @@ SOFTWARE.
  */
 package com.larryricker;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import java.util.logging.Logger;
@@ -31,6 +32,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestReporter;
+import org.openqa.selenium.WebDriverException;
 
 @Tag("ios")
 public class TestSettingsTab {
@@ -58,9 +61,9 @@ public class TestSettingsTab {
 	}
 
 	@Test
-	public void testSettingsTab() throws MalformedURLException {
+	public void testSettingsTab(TestReporter testReporter) throws WebDriverException, IOException {
 		// identify current app
-		String bundleId = Org.getBundleId();
+		String bundleId = Org.getBundleId(testReporter);
 		Org.gotoSettingsTableView();
 		// verify upsell message
 		Org.verifySettingsUpsellMessage();

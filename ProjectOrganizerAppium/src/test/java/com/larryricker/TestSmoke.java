@@ -38,7 +38,6 @@ public class TestSmoke {
 
 	@BeforeEach
 	public void setup() throws MalformedURLException {
-		Org.gotoSettingsTableView();
 	}
 
 	@AfterEach
@@ -49,31 +48,38 @@ public class TestSmoke {
 	@Test
 	public void testSettingsTab(TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		// identify current app
-		String bundleId = Org.getBundleId();
+		String bundleId = Org.getBundleId(testReporter);
 		// create a new project
-		Org.createNewProject("Enhancements");
-		Org.createNewProject("Uplift");
-		Org.createNewProject("Reskin");
-		Org.createNewProject("Search Optimization");
+		Org.createNewProject("Enhancements", testReporter);
+		Org.createNewProject("Uplift", testReporter);
+		Org.createNewProject("Reskin", testReporter);
+		Org.createNewProject("Search Optimization", testReporter);
 		if (bundleId.equals("LR.Progress-Report-Pro")) {
-			Org.createNewProject("Metrics");
-			Org.createNewProject("Defects");
-			Org.createNewProject("Human Factors");
-			Org.createNewProject("Routing");
-			Org.createNewProject("Automated Testing");
-			Org.createNewProject("Biometrics");
-			Org.createNewProject("Content");
-			Org.createNewProject("Routing");
-			Org.createNewProject("Desktop");
-			Org.createNewProject("Upgrade");
-			Org.createNewProject("Integration");
+			Org.createNewProject("Metrics", testReporter);
+			Org.createNewProject("Defects", testReporter);
+			Org.createNewProject("Human Factors", testReporter);
+			Org.createNewProject("Routing", testReporter);
+			Org.createNewProject("Automated Testing", testReporter);
+			Org.createNewProject("Biometrics", testReporter);
+			Org.createNewProject("Content", testReporter);
+			Org.createNewProject("Routing", testReporter);
+			Org.createNewProject("Desktop", testReporter);
+			Org.createNewProject("Upgrade", testReporter);
+			Org.createNewProject("Integration", testReporter);
 		}
-		// select first project
-		App.waitForAccessibilityId("projectCell");
+//		App.waitForAccessibilityId("projectCell");
 //		App.waitForScreenToLoad("projectCell", 30);
 //		Thread.sleep(3000);
 		App.snapAnyway("ProjectSelectionTableView", testReporter);
-		App.click("projectCell");
+		// select first project
+		if (App.exists("Enhancements")) {
+			App.click("Enhancements");
+			
+		}
+		else if (App.exists("projectCell")) {
+			App.click("projectCell");
+			
+		}
 		Org.addStatusReport("Test Cases");
 		// create a new question
 		// select first status report

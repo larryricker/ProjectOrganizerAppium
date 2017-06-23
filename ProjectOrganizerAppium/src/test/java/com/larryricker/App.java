@@ -43,6 +43,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.appium.java_client.TouchAction;
+
 public class App {
 		private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 		public static String capabilities, localizedCapabilities, overrideCapabilities;
@@ -103,14 +105,42 @@ public class App {
 		}
 		return thisElement;
 	}
+	/**
+	 * check if element with accessibility id of using exists
+	 * @param using
+	 * @return
+	 * @throws MalformedURLException
+	 */
 	public static boolean exists(String using) throws MalformedURLException {
 		WebElement thisElement = find(using);
 		return thisElement != null;
 	}
+	/**
+	 * enter text 'projectName' in text field with accessibility id of using
+	 * @param using
+	 * @param projectName
+	 * @throws MalformedURLException
+	 */
 	public static void enterText(String using, String projectName) throws MalformedURLException {
+
 		WebElement projectNameEdit = find(using);
-		projectNameEdit.clear();
-		projectNameEdit.sendKeys(projectName);
+		if (projectNameEdit != null && projectNameEdit.getText() != null && "".equals(projectNameEdit.getText()) == false) {
+			projectNameEdit.clear();
+		}
+		projectNameEdit = find(using);
+		if (projectNameEdit != null) {
+			projectNameEdit.sendKeys(projectName);
+		}
+	}
+	/**
+	 * focus on an element
+	 * @param using
+	 * @throws MalformedURLException
+	 */
+	public static void focus(String using) throws MalformedURLException {
+		TouchAction action = new TouchAction(Driver.getDriver());
+	       action.tap(App.find(using));
+	       action.perform();
 	}
 	/**
 	 * Take a screen shot of the browser window regardless if an error has occurred
@@ -166,16 +196,22 @@ public class App {
 		out.close();
 		return imageCopy.getAbsolutePath().toString();
 	}
+	/**
+	 * wait for element with accessibility id of using
+	 * @param using
+	 * @throws InterruptedException
+	 * @throws MalformedURLException
+	 */
 	public static void waitForAccessibilityId(String using) throws InterruptedException, MalformedURLException {
 		LOGGER.info("waitForAccessibilityId(" + using + ")");
 		int count = 0;
 		WebElement thisElement = null;
 		do {
 			count++;
-			Thread.sleep(500);			
+			Thread.sleep(100);			
 			LOGGER.info("waitForAccessibilityId(" + using + ") count-> " + count);
 			thisElement = App.find(using);
-		} while(count < 20
+		} while(count < 100
 				&& thisElement != null
 				&& App.isDisplayed(thisElement));
 	}
@@ -199,6 +235,12 @@ public class App {
 	}
 		
 	
+	/**
+	 * wait for screen to load with accessibility id of using
+	 * @param using
+	 * @param seconds
+	 * @throws MalformedURLException
+	 */
 	public static void waitForScreenToLoad(String using, int seconds) throws MalformedURLException{
 		LOGGER.info("waitForScreenToLoad(" + using + ", " + seconds + ")");
 

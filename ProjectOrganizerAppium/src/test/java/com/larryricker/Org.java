@@ -3,11 +3,14 @@
  */
 package com.larryricker;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.TestReporter;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -36,9 +39,12 @@ public class Org {
 	/**
 	 * get the bundle ID for the app being tested
 	 * @return
-	 * @throws MalformedURLException
+	 * @throws IOException 
+	 * @throws WebDriverException 
 	 */
-	public static String getBundleId() throws MalformedURLException {
+	public static String getBundleId(TestReporter testReporter) throws WebDriverException, IOException {
+		Org.gotoSettingsTableView();
+		App.snapAnyway("SettingsScreen", testReporter);
 		String bundleId = "";
 		WebElement bi = null;
 		String using = "LR.Progress-Report";
@@ -72,10 +78,13 @@ public class Org {
 	/**
 	 * Creates a new project
 	 * @param projectName
-	 * @throws MalformedURLException
+	 * @throws IOException 
+	 * @throws WebDriverException 
+	 * @throws InterruptedException 
 	 */
-	public static void createNewProject(String projectName) throws MalformedURLException {
+	public static void createNewProject(String projectName, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		App.click("Add");
+
 		if (App.exists("Continue")) {
 			// Search
 //			App.click("Search");
@@ -88,9 +97,11 @@ public class Org {
 			App.click("Continue");
 		}
 		else {
-			// name project
-			String using = "projectNameEdit";
-			App.enterText(using, projectName);
+			// projectNameEdit
+//			App.waitForAccessibilityId("projectNameEdit");
+			App.waitForScreenToLoad("projectNameEdit", 10);
+			App.snapAnyway("NewProjectNameView", testReporter);			// name project
+			App.enterText("projectNameEdit", projectName);
 			// click on done button
 			App.click("Done");
 		}
@@ -105,6 +116,11 @@ public class Org {
 		Assertions.assertEquals(upsell.getText(), upsell.getText(), "Upsell message is correct");
 	}
 
+	/**
+	 * add status report
+	 * @param statusReportName
+	 * @throws MalformedURLException
+	 */
 	public static void addStatusReport(String statusReportName) throws MalformedURLException {
 		// create a new status report
 		App.click("Add");
@@ -114,10 +130,17 @@ public class Org {
 		App.click("Done");
 	}
 
+	/**
+	 * add test case
+	 * @param statusReportTitle
+	 * @param answer
+	 * @throws MalformedURLException
+	 */
 	public static void addTestCase(String statusReportTitle, String answer) throws MalformedURLException {
 		App.click("Add");
 		App.enterText("statusReportTitle", statusReportTitle);
 		App.enterText("questionTextField", "What is the test case?");
+		App.focus("answerTextField");
 		App.enterText("answerTextField", answer);
 		App.click("Done");
 	}
