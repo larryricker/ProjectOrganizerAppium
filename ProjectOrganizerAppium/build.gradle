@@ -22,6 +22,7 @@ apply plugin: 'maven-publish'
 dependencies {
 	compile 'org.junit.jupiter:junit-jupiter-api:5.0.0-M4'
 	compile 'org.junit.jupiter:junit-jupiter-engine:5.0.0-M4'
+	compile 'org.junit.jupiter:junit-jupiter-params:5.0.0-M4'
 	compile 'org.junit.platform:junit-platform-console:1.0.0-M4'
 	compile 'org.seleniumhq.selenium:selenium-server:3.4.0'
 	compile 'com.google.code.gson:gson-parent:2.8.1'
@@ -31,6 +32,7 @@ dependencies {
 
 	testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.0-M4'
 	testCompile 'org.junit.jupiter:junit-jupiter-engine:5.0.0-M4'
+	testCompile 'org.junit.jupiter:junit-jupiter-params:5.0.0-M4'
 	testCompile 'org.junit.platform:junit-platform-console:1.0.0-M4'
 	testCompile 'org.seleniumhq.selenium:selenium-server:3.4.0'
 	testCompile 'com.google.code.gson:gson-parent:2.8.1'
@@ -66,9 +68,9 @@ junitPlatform {
 			include 'junit-jupiter'
 		}
 		tags {
-			include 'smoke'
+			include (findProperty('tag') != null ? findProperty('tag') : 'smoke')
 		}
-		includeClassNamePattern '^.*Test.*$'
+		includeClassNamePattern (findProperty('testclass') != null ? '^.*' + findProperty('testclass') + '.*$' : '^.*Test.*$')
 	}
 }
 			

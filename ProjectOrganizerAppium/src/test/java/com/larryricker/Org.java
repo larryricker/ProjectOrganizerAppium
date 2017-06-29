@@ -1,5 +1,23 @@
 /**
- * 
+ * Copyright (c) 2017 Larry Ricker
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
  */
 package com.larryricker;
 
@@ -47,17 +65,48 @@ public class Org {
 		App.snapAnyway("SettingsScreen", testReporter);
 		String bundleId = "";
 		WebElement bi = null;
-		String using = "LR.Progress-Report";
-		if (App.exists(using)) {
-			bundleId = using;
-		}
-		using = "LR.Progress-Report-Pro";
-		if (App.exists(using)) {
-			bundleId = using;
-		}
+		bundleId = isThisTheBundleId(bundleId, "LR.Progress-Report");
+		bundleId = isThisTheBundleId(bundleId, "LR.Progress-Report-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.PMIS2");
+		bundleId = isThisTheBundleId(bundleId, "LR.PMIS-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Project-Organizer");
+		bundleId = isThisTheBundleId(bundleId, "LR.Project-Organizer-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Project-Status");
+		bundleId = isThisTheBundleId(bundleId, "LR.Project-Status-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Project-Info");
+		bundleId = isThisTheBundleId(bundleId, "LR.Project-Info-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Bad-With-Names");
+		bundleId = isThisTheBundleId(bundleId, "LR.Bad-With-Names-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Good-With-Names");
+		bundleId = isThisTheBundleId(bundleId, "LR.Good-With-Names-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.StatusReport4");
+		bundleId = isThisTheBundleId(bundleId, "LR.StatusReport4-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Student-Organizer");
+		bundleId = isThisTheBundleId(bundleId, "LR.Student-Organizer-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Job-Hunt");
+		bundleId = isThisTheBundleId(bundleId, "LR.Job-Hunt-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Opportunity-Organizer");
+		bundleId = isThisTheBundleId(bundleId, "LR.Opportunity-Organizer-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Passing-Notes");
+		bundleId = isThisTheBundleId(bundleId, "LR.Passing-Notes-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Class-Organizer");
+		bundleId = isThisTheBundleId(bundleId, "LR.Class-Organizer-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Notes-Organizer");
+		bundleId = isThisTheBundleId(bundleId, "LR.Notes-Organizer-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Career-Search");
+		bundleId = isThisTheBundleId(bundleId, "LR.Career-Search-Pro");
+		bundleId = isThisTheBundleId(bundleId, "LR.Curriculum-Organizer");
+		bundleId = isThisTheBundleId(bundleId, "LR.Curriculum-Organizer-Pro");
 		exitSettingsTableView();
 		LOGGER.log(Level.INFO, "getBundleId() - bundleId->" + bundleId);
+		return bundleId;
+	}
 
+	private static String isThisTheBundleId(String bundleId, String using) throws MalformedURLException {
+		LOGGER.info("bundleId bundleId-> " + bundleId + ", using->" + using);
+		if ("".equals(bundleId) && App.exists(using)) {
+			bundleId = using;
+		}
 		return bundleId;
 	}
 
@@ -112,8 +161,27 @@ public class Org {
 	 * @throws MalformedURLException
 	 */
 	public static void verifySettingsUpsellMessage() throws MalformedURLException {
-		WebElement upsell = App.find("Buy Progress Report Pro 4.99");
-		Assertions.assertEquals(upsell.getText(), upsell.getText(), "Upsell message is correct");
+		verifyUpsellMessage("Buy PMIS Pro 4.99");
+		verifyUpsellMessage("Buy Progress Report Pro 4.99");
+		verifyUpsellMessage("Buy Project Organizer Pro 4.99");
+		verifyUpsellMessage("Buy Project Status Pro 4.99");
+		verifyUpsellMessage("Buy StatusReport4 Pro 3.99");
+		verifyUpsellMessage("Buy Project Info Pro 4.99");
+		verifyUpsellMessage("Buy Bad With Names Pro 0.99");
+		verifyUpsellMessage("Buy Good With Names Pro 0.99");
+		verifyUpsellMessage("Buy Student Organizer Pro 0.99");
+		verifyUpsellMessage("Buy Passing Notes Pro 4.99");
+		verifyUpsellMessage("Buy Job Hunt Pro 1.99");
+		verifyUpsellMessage("Buy Opportunity Organizer Pro 2.99");
+		verifyUpsellMessage("Buy Class Organizer Pro 0.99");
+	}
+
+	private static void verifyUpsellMessage(String using) throws MalformedURLException {
+		WebElement upsell;
+		upsell = App.find(using);
+		if (upsell != null) {
+			Assertions.assertEquals(upsell.getText(), using, "Upsell message is correct");
+		}
 	}
 
 	/**
@@ -143,6 +211,16 @@ public class Org {
 		App.focus("answerTextField");
 		App.enterText("answerTextField", answer);
 		App.click("Done");
+	}
+
+	public static boolean isProVersion(String bundleId) {
+		return bundleId.equals("LR.Progress-Report-Pro")
+				|| bundleId.equals("LR.StatusReport4-Pro")
+				|| bundleId.equals("LR.Project-Organizer-Pro")
+				|| bundleId.equals("LR.Project-Info-Pro")
+				|| bundleId.equals("LR.PMIS-Pro")
+				|| bundleId.equals("LR.Good-With-Names-Pro")
+				|| bundleId.equals("LR.Bad-With-Names-Pro");
 	}
 
 }

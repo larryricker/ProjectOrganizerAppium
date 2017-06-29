@@ -52,12 +52,10 @@ public class TestSettingsTab {
 
 	@BeforeEach
 	public void setup() throws MalformedURLException {
-		Org.gotoSettingsTableView();
 	}
 
 	@AfterEach
 	public void cleanup() {
-
 	}
 
 	@Test

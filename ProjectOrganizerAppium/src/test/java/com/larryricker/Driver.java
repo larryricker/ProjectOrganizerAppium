@@ -61,7 +61,6 @@ public class Driver {
 		final DesiredCapabilities capabilities = DesiredCapabilities.ipad();
 		JsonParser parser = new JsonParser();
 		App.load();
-		// Object obj = parser.parse(new FileReader(App.capabilities));
 		Object obj = parser
 				.parse(new InputStreamReader(Driver.class.getClassLoader().getResourceAsStream(App.capabilities)));
 		JsonObject jsonObject = (JsonObject) obj;

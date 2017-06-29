@@ -12,5 +12,7 @@
   "xcodeSigningId": "iPhone Developer",
   "xcodeConfigFile": "/Users/lawrencericker/Documents/2017 ProjectOrganizer244_1/StatusReport4/StatusReport4/Progress Report-Info.plist",
   "useNewWDA": false,
-  "app": "/Users/lawrencericker/Documents/apps/Progress Report.ipa"
+  "app": "/Users/lawrencericker/Documents/apps/Progress Report.ipa",
+  "autoDismissAlerts" : true,
+  "sendKeyStrategy" : "setValue"
 }
