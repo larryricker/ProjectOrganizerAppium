@@ -96,17 +96,6 @@ public class Driver {
 
 	public static void destroy() throws MalformedURLException {
 		LOGGER.log(Level.INFO, "destroy()");
-		final WebDriver instanceOne = com.larryricker.Driver.getDriver();
-		WebDriver instanceTwo = null;
-		@SuppressWarnings("rawtypes")
-		final Constructor[] constructors = com.larryricker.Driver.class.getDeclaredConstructors();
-		for (@SuppressWarnings("rawtypes")
-		final Constructor constructor : constructors) {
-			constructor.setAccessible(true);
-			instanceTwo = com.larryricker.Driver.getDriver();
-			break;
-		}
-		LOGGER.log(Level.FINEST, "i1: " + instanceOne.hashCode());
-		LOGGER.log(Level.FINEST, "i2: " + instanceTwo.hashCode());
+		Driver.aDriver = null;
 	}
 }

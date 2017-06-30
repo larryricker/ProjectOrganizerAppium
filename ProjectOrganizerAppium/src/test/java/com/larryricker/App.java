@@ -63,6 +63,9 @@ public class App {
 			String computername = InetAddress.getLocalHost().getHostName();
 			localizedCapabilities = prop.getProperty(computername + ".capabilities");
 			overrideCapabilities = System.getenv("TEST_CAPABILITIES");
+			if (overrideCapabilities == null) {
+				overrideCapabilities = System.getProperty("TEST_CAPABILITIES");
+			}
 			capabilities = (overrideCapabilities != null 
 					? overrideCapabilities 
 							: localizedCapabilities != null 

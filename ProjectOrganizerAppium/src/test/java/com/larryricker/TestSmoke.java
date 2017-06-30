@@ -29,9 +29,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestReporter;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriverException;
 
 /**
@@ -55,16 +59,25 @@ public class TestSmoke {
 	}
 
 	@BeforeEach
-	public void setup() throws MalformedURLException {
+	public void setup(String capabilities, TestInfo info, TestReporter testReporter) throws MalformedURLException {
 	}
 
 	@AfterEach
-	public void cleanup() {
-
+	public void cleanup(String capabilities, TestInfo info, TestReporter testReporter) throws MalformedURLException {
+		Driver.destroy();
 	}
 
-	@Test
-	public void testSettingsTab(TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
+	@ParameterizedTest
+	@ValueSource(strings= {"BadWithNames.json"
+	, "BadWithNamesPro.json", "GoodWithNames.json"
+	,"GoodWithNamesPro.json", "PMIS-Pro.json"
+	, "PMIS.json", "ProgressReport.json"
+	, "ProgressReportPro.json", "ProjectInfo.json"
+	, "ProjectInfoPro.json", "ProjectOrganizer.json"
+	, "ProjectOrganizerPro.json", "StatusReport4.json"
+	, "StatusReport4Pro.json"})
+	@DisplayName("Smoke Test")
+	public void testSmoke(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		// identify current app
 		String bundleId = Org.getBundleId(testReporter);
 		// create a new project
