@@ -73,7 +73,7 @@ public class TestSettingsTab {
 	, "ProjectOrganizerPro.json", "StatusReport4.json"
 	, "StatusReport4Pro.json"})
 	@DisplayName("Settings Tab")
-	public void testSettingsTab(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException {
+	public void testSettingsTab(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		Assert.assertNotNull("capabilities is not null", capabilities);
 		testReporter.publishEntry(info.getDisplayName(), "Capabilities under test "+ capabilities);
 		System.setProperty("TEST_CAPABILITIES", capabilities);
@@ -86,7 +86,7 @@ public class TestSettingsTab {
 		// Click on rate our app
 		// App.click(" Rate our app"); // not testable at this time
 		// exit app rating
-		Org.shareAppFromSettingsTableView();
+		Org.shareAppFromSettingsTableView(testReporter);
 		// restore purchases - skip for now
 		Org.exitSettingsTableView();
 	}

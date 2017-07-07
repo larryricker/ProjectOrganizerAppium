@@ -68,7 +68,7 @@ junitPlatform {
 			include 'junit-jupiter'
 		}
 		tags {
-			include (findProperty('tag') != null ? findProperty('tag') : 'smoke')
+			include (findProperty('tag') != null ? findProperty('tag') : 'ios')
 		}
 		includeClassNamePattern (findProperty('testclass') != null ? '^.*' + findProperty('testclass') + '.*$' : '^.*Test.*$')
 	}

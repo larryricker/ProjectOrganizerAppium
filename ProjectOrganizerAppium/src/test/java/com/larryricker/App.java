@@ -215,7 +215,7 @@ public class App {
 			LOGGER.info("waitForAccessibilityId(" + using + ") count-> " + count);
 			thisElement = App.find(using);
 		} while(count < 100
-				&& thisElement != null
+				&& thisElement == null
 				&& App.isDisplayed(thisElement));
 	}
 	/**

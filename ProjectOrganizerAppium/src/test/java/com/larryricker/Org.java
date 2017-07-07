@@ -112,13 +112,18 @@ public class Org {
 
 	/**
 	 * Share app by email
-	 * @throws MalformedURLException
+	 * @throws InterruptedException 
+	 * @throws IOException 
+	 * @throws WebDriverException 
 	 */
-	public static void shareAppFromSettingsTableView() throws MalformedURLException {
+	public static void shareAppFromSettingsTableView(TestReporter testReporter) throws InterruptedException, WebDriverException, IOException {
 		// share app
 		App.click("Share");
+		App.waitForAccessibilityId("toField");
+		App.snapAnyway("ShareApplication", testReporter);
 		// toField - enter text
 		WebElement to = App.find("toField");
+		to.clear();
 		to.sendKeys("larry@larryricker.com");
 		// send email
 		App.click("Send");
