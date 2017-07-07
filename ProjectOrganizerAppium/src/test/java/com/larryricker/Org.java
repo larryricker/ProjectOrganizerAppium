@@ -106,7 +106,7 @@ public class Org {
 	}
 
 	private static String isThisTheBundleId(String bundleId, String using) throws MalformedURLException {
-		LOGGER.info("bundleId bundleId-> " + bundleId + ", using->" + using);
+//		LOGGER.info("bundleId bundleId-> " + bundleId + ", using->" + using);
 		if ("".equals(bundleId) && App.exists(using)) {
 			bundleId = using;
 		}
