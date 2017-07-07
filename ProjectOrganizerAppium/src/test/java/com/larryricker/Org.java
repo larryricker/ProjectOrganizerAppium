@@ -41,9 +41,11 @@ public class Org {
 	/**
 	 * Clicks on settings button at the bottom of the page
 	 * @throws MalformedURLException
+	 * @throws InterruptedException 
 	 */
-	static void gotoSettingsTableView() throws MalformedURLException {
+	static void gotoSettingsTableView() throws MalformedURLException, InterruptedException {
 		App.click("Settings");
+		App.waitForAccessibilityId("Project");
 	}
 
 	/**
@@ -59,8 +61,9 @@ public class Org {
 	 * @return
 	 * @throws IOException 
 	 * @throws WebDriverException 
+	 * @throws InterruptedException 
 	 */
-	public static String getBundleId(TestReporter testReporter) throws WebDriverException, IOException {
+	public static String getBundleId(TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		Org.gotoSettingsTableView();
 		App.snapAnyway("SettingsScreen", testReporter);
 		String bundleId = "";
@@ -120,11 +123,11 @@ public class Org {
 		// share app
 		App.click("Share");
 		App.waitForAccessibilityId("toField");
-		App.snapAnyway("ShareApplication", testReporter);
 		// toField - enter text
 		WebElement to = App.find("toField");
 		to.clear();
 		to.sendKeys("larry@larryricker.com");
+		App.snapAnyway("ShareApplication", testReporter);
 		// send email
 		App.click("Send");
 	}

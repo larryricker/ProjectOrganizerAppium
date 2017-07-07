@@ -59,7 +59,8 @@ public class TestSettingsTab {
 	}
 
 	@AfterEach
-	public void cleanup(String capabilities, TestInfo info, TestReporter testReporter) throws MalformedURLException {
+	public void cleanup(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException {
+		App.snapAnyway("ExitSettingsTab", testReporter);
 		Driver.destroy();
 	}
 
@@ -71,7 +72,8 @@ public class TestSettingsTab {
 	, "ProgressReportPro.json", "ProjectInfo.json"
 	, "ProjectInfoPro.json", "ProjectOrganizer.json"
 	, "ProjectOrganizerPro.json", "StatusReport4.json"
-	, "StatusReport4Pro.json"})
+	, "StatusReport4Pro.json", "ProjectStatus.json"
+	, "ProjectStatusPro.json"})
 	@DisplayName("Settings Tab")
 	public void testSettingsTab(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		Assert.assertNotNull("capabilities is not null", capabilities);

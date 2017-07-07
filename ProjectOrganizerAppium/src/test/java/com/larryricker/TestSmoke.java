@@ -63,7 +63,8 @@ public class TestSmoke {
 	}
 
 	@AfterEach
-	public void cleanup(String capabilities, TestInfo info, TestReporter testReporter) throws MalformedURLException {
+	public void cleanup(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException {
+		App.snapAnyway("ExitSmoke", testReporter);
 		Driver.destroy();
 	}
 
@@ -75,7 +76,8 @@ public class TestSmoke {
 	, "ProgressReportPro.json", "ProjectInfo.json"
 	, "ProjectInfoPro.json", "ProjectOrganizer.json"
 	, "ProjectOrganizerPro.json", "StatusReport4.json"
-	, "StatusReport4Pro.json"})
+	, "StatusReport4Pro.json", "ProjectStatus.json"
+	, "ProjectStatusPro.json"})
 	@DisplayName("Smoke Test")
 	public void testSmoke(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		// identify current app
