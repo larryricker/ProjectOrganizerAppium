@@ -125,7 +125,7 @@ public class Org {
 		App.waitForAccessibilityId("toField");
 		// toField - enter text
 		WebElement to = App.find("toField");
-		to.clear();
+//		to.clear();
 		to.sendKeys("larry@larryricker.com");
 		App.snapAnyway("ShareApplication", testReporter);
 		// send email
