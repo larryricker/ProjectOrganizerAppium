@@ -155,8 +155,7 @@ public class Org {
 		}
 		else {
 			// projectNameEdit
-//			App.waitForAccessibilityId("projectNameEdit");
-			App.waitForScreenToLoad("projectNameEdit", 10);
+			App.waitForAccessibilityId("projectNameEdit");
 			App.snapAnyway("NewProjectNameView", testReporter);			// name project
 			App.enterText("projectNameEdit", projectName);
 			// click on done button
