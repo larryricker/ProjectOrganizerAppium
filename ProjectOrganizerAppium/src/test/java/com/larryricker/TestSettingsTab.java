@@ -60,7 +60,7 @@ public class TestSettingsTab {
 
 	@AfterEach
 	public void cleanup(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException {
-		App.snapAnyway("ExitSettingsTab", testReporter);
+		App.snapAnyway(capabilities.replaceAll(".json", "") + "ExitSettingsTab", testReporter);
 		Driver.destroy();
 	}
 
@@ -81,7 +81,7 @@ public class TestSettingsTab {
 		System.setProperty("TEST_CAPABILITIES", capabilities);
 		// identify current app
 		String bundleId = Org.getBundleId(testReporter);
-		Org.gotoSettingsTableView();
+		Org.gotoSettingsTableView(testReporter);
 		// verify upsell message
 		Org.verifySettingsUpsellMessage();
 		// click on upsell and buy app - skip for now

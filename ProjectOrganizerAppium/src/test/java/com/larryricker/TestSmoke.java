@@ -64,7 +64,7 @@ public class TestSmoke {
 
 	@AfterEach
 	public void cleanup(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException {
-		App.snapAnyway("ExitSmoke", testReporter);
+		App.snapAnyway(capabilities.replaceAll(".json", "") + "ExitSmoke", testReporter);
 		Driver.destroy();
 	}
 

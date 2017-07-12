@@ -40,10 +40,15 @@ public class Org {
 
 	/**
 	 * Clicks on settings button at the bottom of the page
-	 * @throws MalformedURLException
 	 * @throws InterruptedException 
+	 * @throws IOException 
+	 * @throws WebDriverException 
 	 */
-	static void gotoSettingsTableView() throws MalformedURLException, InterruptedException {
+	static void gotoSettingsTableView(TestReporter testReporter) throws InterruptedException, WebDriverException, IOException {
+		if (App.exists("Remind me later")) {
+			App.snapAnyway("RemindMeLater", testReporter);
+			App.click("Remind me later");
+		}
 		App.click("Settings");
 		App.waitForAccessibilityId("Project");
 	}
@@ -64,7 +69,7 @@ public class Org {
 	 * @throws InterruptedException 
 	 */
 	public static String getBundleId(TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
-		Org.gotoSettingsTableView();
+		Org.gotoSettingsTableView(testReporter);
 		App.snapAnyway("SettingsScreen", testReporter);
 		String bundleId = "";
 		WebElement bi = null;
