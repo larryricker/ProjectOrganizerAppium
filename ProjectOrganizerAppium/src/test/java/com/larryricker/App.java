@@ -215,8 +215,7 @@ public class App {
 			LOGGER.info("waitForAccessibilityId(" + using + ") count-> " + count);
 			thisElement = App.find(using);
 		} while(count < 100
-				&& thisElement == null
-				&& App.isDisplayed(thisElement));
+				&& thisElement == null);
 	}
 	/**
 	 * is element thisElement displayed on the screen
@@ -237,17 +236,4 @@ public class App {
 		return isDisplayed(App.find(using));
 	}
 		
-	
-	/**
-	 * wait for screen to load with accessibility id of using
-	 * @param using
-	 * @param seconds
-	 * @throws MalformedURLException
-	 */
-	public static void waitForScreenToLoad(String using, int seconds) throws MalformedURLException{
-		LOGGER.info("waitForScreenToLoad(" + using + ", " + seconds + ")");
-
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),seconds);
-        wait.until(ExpectedConditions.visibilityOf(App.find(using)));
-	}
 }
