@@ -45,12 +45,32 @@ public class Org {
 	 * @throws WebDriverException 
 	 */
 	static void gotoSettingsTableView(TestReporter testReporter) throws InterruptedException, WebDriverException, IOException {
+		handleRateMeReminder(testReporter);
+		returnToProjectMainScreen();
+		App.click("Settings");
+		App.waitForAccessibilityId("Project");
+	}
+
+	private static void handleRateMeReminder(TestReporter testReporter) throws MalformedURLException, IOException {
 		if (App.exists("Remind me later")) {
 			App.snapAnyway("RemindMeLater", testReporter);
 			App.click("Remind me later");
 		}
-		App.click("Settings");
-		App.waitForAccessibilityId("Project");
+	}
+
+	private static void returnToProjectMainScreen() throws MalformedURLException, InterruptedException {
+		if (App.exists("Back")) {
+			App.click("Back");
+			App.waitForAccessibilityId("Edit");
+		}
+		if (App.exists("Defects")) {
+			App.click("Defects");
+			App.waitForAccessibilityId("Edit");
+		}
+		if (App.exists("Project")) {
+			App.click("Project");
+			App.waitForAccessibilityId("Edit");
+		}
 	}
 
 	/**
@@ -72,7 +92,6 @@ public class Org {
 		Org.gotoSettingsTableView(testReporter);
 		App.snapAnyway("SettingsScreen", testReporter);
 		String bundleId = "";
-		WebElement bi = null;
 		bundleId = isThisTheBundleId(bundleId, "LR.Progress-Report");
 		bundleId = isThisTheBundleId(bundleId, "LR.Progress-Report-Pro");
 		bundleId = isThisTheBundleId(bundleId, "LR.PMIS2");
