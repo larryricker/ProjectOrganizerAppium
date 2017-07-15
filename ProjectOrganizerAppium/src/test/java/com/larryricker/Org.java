@@ -23,6 +23,7 @@ package com.larryricker;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,7 +52,7 @@ public class Org {
 		App.waitForAccessibilityId("Project");
 	}
 
-	private static void handleRateMeReminder(TestReporter testReporter) throws MalformedURLException, IOException {
+	private static void handleRateMeReminder(TestReporter testReporter) throws MalformedURLException, IOException, InterruptedException {
 		if (App.exists("Remind me later")) {
 			App.snapAnyway("RemindMeLater", testReporter);
 			App.click("Remind me later");
@@ -76,8 +77,9 @@ public class Org {
 	/**
 	 * exit settings tab
 	 * @throws MalformedURLException
+	 * @throws InterruptedException 
 	 */
-	public static void exitSettingsTableView() throws MalformedURLException {
+	public static void exitSettingsTableView() throws MalformedURLException, InterruptedException {
 		App.click("Project");
 	}
 
@@ -219,8 +221,9 @@ public class Org {
 	 * add status report
 	 * @param statusReportName
 	 * @throws MalformedURLException
+	 * @throws InterruptedException 
 	 */
-	public static void addStatusReport(String statusReportName) throws MalformedURLException {
+	public static void addStatusReport(String statusReportName) throws MalformedURLException, InterruptedException {
 		// create a new status report
 		App.click("Add");
 		// statusToAdd
@@ -234,8 +237,9 @@ public class Org {
 	 * @param statusReportTitle
 	 * @param answer
 	 * @throws MalformedURLException
+	 * @throws InterruptedException 
 	 */
-	public static void addTestCase(String statusReportTitle, String answer) throws MalformedURLException {
+	public static void addTestCase(String statusReportTitle, String answer) throws MalformedURLException, InterruptedException {
 		App.click("Add");
 		App.enterText("statusReportTitle", statusReportTitle);
 		App.enterText("questionTextField", "What is the test case?");
@@ -244,6 +248,11 @@ public class Org {
 		App.click("Done");
 	}
 
+	/**
+	 * delete all rows of the tableview
+	 * @param bundleId
+	 * @return
+	 */
 	public static boolean isProVersion(String bundleId) {
 		return bundleId.equals("LR.Progress-Report-Pro")
 				|| bundleId.equals("LR.StatusReport4-Pro")
@@ -252,6 +261,59 @@ public class Org {
 				|| bundleId.equals("LR.PMIS-Pro")
 				|| bundleId.equals("LR.Good-With-Names-Pro")
 				|| bundleId.equals("LR.Bad-With-Names-Pro");
+	}
+
+	/**
+	 * delete all table view rows
+	 * @param deleteButtonName
+	 * @throws MalformedURLException
+	 * @throws InterruptedException
+	 */
+	public static void deleteAllTableViewRows(String deleteButtonName) throws MalformedURLException, InterruptedException {
+		List<WebElement> dashes = null;
+		int numberOfDashes = 0;
+		do {
+			// click on - 
+			// dash = App.find("-");
+			Org.editMode();
+			dashes = Driver.getDriver().findElementsByAccessibilityId(deleteButtonName);
+			numberOfDashes = dashes.size();
+			LOGGER.info("Number of " + deleteButtonName + " Dash Buttons found->" + numberOfDashes);
+			for (int i = (numberOfDashes > 4 ? 4 : numberOfDashes); --i >=0;) {
+				WebElement dash = dashes.get(i);
+				if (dash.isDisplayed()) {
+					dash.click();
+					App.click("Delete");
+				}
+			}
+		} while (numberOfDashes > 0 
+				&& dashes.isEmpty() == false
+				&& dashes.get(0).isDisplayed());
+	}
+
+	/**
+	 * edit mode of table view
+	 * @throws MalformedURLException
+	 * @throws InterruptedException
+	 */
+	public static void editMode() throws MalformedURLException, InterruptedException {
+		if (App.exists("Edit")) {
+			App.click("Edit");
+		}
+	}
+
+	/**
+	 * exit edit mode of table view and return to selection mode
+	 * @throws MalformedURLException
+	 * @throws InterruptedException
+	 */
+	public static void exitEditMode() throws MalformedURLException, InterruptedException {
+		if (App.exists("Done")) {
+			App.click("Done");
+		}
+		else if (App.exists("Edit")) {
+			editMode();
+		}
 	}
 
 }

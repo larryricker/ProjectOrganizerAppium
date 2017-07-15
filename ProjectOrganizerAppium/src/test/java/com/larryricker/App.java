@@ -89,8 +89,9 @@ public class App {
 	 * click on element with accessibility id
 	 * @param using
 	 * @throws MalformedURLException
+	 * @throws InterruptedException 
 	 */
-	public static void click(String using) throws MalformedURLException {
+	public static void click(String using) throws MalformedURLException, InterruptedException {
 		Driver.getDriver().findElementByAccessibilityId(using).click();
 	}
 	/**
