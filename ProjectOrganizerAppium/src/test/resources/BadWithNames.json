@@ -14,5 +14,5 @@
   "useNewWDA": false,
   "usePrebuiltWDA" : true,
   "app": "/Users/lawrencericker/Documents/apps/Bad With Names.ipa",
-  "sendKeyStrategy" : "setValue"
+  "sendKeyStrategy" : "oneByOne"
 }

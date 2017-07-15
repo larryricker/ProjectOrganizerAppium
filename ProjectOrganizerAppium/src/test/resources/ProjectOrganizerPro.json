@@ -14,6 +14,6 @@
   "useNewWDA": false,
   "usePrebuiltWDA" : true,
   "app": "/Users/lawrencericker/Documents/apps/Project Organizer Pro.ipa",
-  "sendKeyStrategy" : "grouped"
+  "sendKeyStrategy" : "oneByOne"
 
 }
