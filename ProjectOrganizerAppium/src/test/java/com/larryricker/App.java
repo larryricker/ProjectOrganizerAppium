@@ -125,15 +125,11 @@ public class App {
 	 * @param projectName
 	 * @throws MalformedURLException
 	 */
-	public static void enterText(String using, String projectName) throws MalformedURLException {
+	public static void enterText(String using, String text) throws MalformedURLException {
 
 		WebElement projectNameEdit = find(using);
-		if (projectNameEdit != null && projectNameEdit.getText() != null && "".equals(projectNameEdit.getText()) == false) {
-			projectNameEdit.clear();
-		}
-		projectNameEdit = find(using);
 		if (projectNameEdit != null) {
-			projectNameEdit.sendKeys(projectName);
+			projectNameEdit.sendKeys(text);
 		}
 	}
 	/**
@@ -235,6 +231,14 @@ public class App {
 	 */
 	public static boolean isDisplayed(String using) throws MalformedURLException {
 		return isDisplayed(App.find(using));
+	}
+	/**
+	 * clear textfield with accessibility id of using
+	 * @param using
+	 * @throws MalformedURLException
+	 */
+	public static void clear(String using) throws MalformedURLException {
+		find(using).clear();
 	}
 		
 }

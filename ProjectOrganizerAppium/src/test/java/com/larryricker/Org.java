@@ -242,7 +242,9 @@ public class Org {
 	public static void addTestCase(String statusReportTitle, String answer) throws MalformedURLException, InterruptedException {
 		App.click("Add");
 		App.enterText("statusReportTitle", statusReportTitle);
-		App.enterText("questionTextField", "What is the test case?");
+		String using = "questionTextField";
+		App.clear(using);
+		App.enterText(using, "What is the test case?");
 		App.focus("answerTextField");
 		App.enterText("answerTextField", answer);
 		App.click("Done");
