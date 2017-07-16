@@ -180,6 +180,7 @@ public class Org {
 			// No Advertising
 			// Continue
 			App.click("Continue");
+			Thread.sleep(10000);
 		}
 		else {
 			// projectNameEdit
@@ -188,6 +189,7 @@ public class Org {
 			App.snapAnyway("NewProjectNameView", testReporter);			// name project
 			// click on done button
 			App.click("Done");
+			Thread.sleep(10000);
 		}
 	}
 
