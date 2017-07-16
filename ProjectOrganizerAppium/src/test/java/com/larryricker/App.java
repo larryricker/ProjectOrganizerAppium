@@ -254,13 +254,44 @@ public class App {
 			if (App.exists(using)) {
 				App.click(using);
 			}
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} while (App.exists(waitForElement1) == false
 				&& App.exists(waitForElement2) == false
-				&& count < 5);
+				&& count < 10);
 
 	}
 
+	public static void waitThenClickUntilOneOfTwoElementsPresent(String using, String waitForElement1, String waitForElement2) throws MalformedURLException, InterruptedException {
+		LOGGER.info("waitThenClickUntilOneOfTwoElementsPresent(" + using + ", " + waitForElement1 + ", " + waitForElement2 + ")");
+		App.waitForAccessibilityId(using);
+		int count = 0;
+		do {
+			count++;
+			if (App.exists(using)) {
+				App.click(using);
+			}
+			Thread.sleep(1000);
+		} while (App.exists(waitForElement1) == false
+				&& App.exists(waitForElement2) == false
+				&& count < 10);
+
+	}
+	
+	public static void waitThenClickUntilOneElementPresent(String using, String waitForElement1) throws MalformedURLException, InterruptedException {
+		LOGGER.info("waitThenClickUntilOneOfTwoElementsPresent(" + using + ", " + waitForElement1  + ")");
+		App.waitForAccessibilityId(using);
+		int count = 0;
+		do {
+			count++;
+			if (App.exists(using)) {
+				App.click(using);
+			}
+			Thread.sleep(1000);
+		} while (App.exists(waitForElement1) == false
+				&& count < 10);
+
+	}
+	
 	public static void clickWhileStillExists(String using) throws MalformedURLException, InterruptedException {
 		LOGGER.info("clickWhileStillExists(" + using + ")");
 		int count = 0;
@@ -269,9 +300,9 @@ public class App {
 			if (App.exists(using)) {
 				App.click(using);
 			}
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} while (App.exists(using) == true
-				&& count < 5);
+				&& count < 10);
 
 	}
 

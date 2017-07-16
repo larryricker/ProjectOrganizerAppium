@@ -167,8 +167,9 @@ public class Org {
 	 */
 	public static void createNewProject(String projectName, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		App.click("Add");
-		Thread.sleep(10000);
+//		Thread.sleep(10000);
 //		App.clickUntilOneOfTwoElementsPresent("Add", "Undo", "Continue");
+		App.waitThenClickUntilOneOfTwoElementsPresent("Add", "Undo", "Continue");
 //		App.clickWhileStillExists("Add");
 		if (App.exists("Continue")) {
 			// Search
@@ -189,7 +190,8 @@ public class Org {
 			App.snapAnyway("NewProjectNameView", testReporter);			// name project
 			// click on done button
 			App.click("Done");
-			Thread.sleep(10000);
+//			Thread.sleep(10000);
+			App.waitThenClickUntilOneElementPresent("Done", "Add");
 		}
 	}
 
