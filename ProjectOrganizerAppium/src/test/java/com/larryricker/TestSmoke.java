@@ -122,7 +122,7 @@ public class TestSmoke {
 		Org.addTestCase("Create Backup On All Three Levels", "Send emails.");
 		Org.addTestCase("Send Memo With Minutes Of the Meeting", "Send email.");
 		Org.addTestCase("Orientation","Rotate orientation on each screen and\nverify the fields and buttons do not shift off\nthe screen.  It looks good, symmetrically\naligned and is functional.");
-		Org.addTestCase("Localization","Switch app to Spain, Mexico\nSwithc app to England, Australia, Canada\nSwitch app to Germany\nSwitch app to France\nSwitch app to Italy.");
+		Org.addTestCase("Localization","Switch app to Spain, Mexico\nSwitch app to England, Australia, Canada\nSwitch app to Germany\nSwitch app to France\nSwitch app to Italy.");
 		Org.addTestCase("Reorder","Reorder projects\nReorder statuses\nReorder questions\nLeave View and return and verify order\npersists.");
 		Org.addTestCase("Upgrade Application - Destructive", "Purchase upgrade app on settings tab\nPurchase upgraded app when exceed\nnumber of allowed projects\nPurchase app when on new project or\nrename project tab\nPurchase app when on new status report or rename\nstatus report tab\nThese tests will need the compiled app as an IPA file\nand have the app reinstalled after each test.");
 		Org.addTestCase("Create New Status Report","Create new status report call test cases.\nAdd test cases to progress report.");
