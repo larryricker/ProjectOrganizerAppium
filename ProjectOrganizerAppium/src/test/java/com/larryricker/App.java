@@ -260,5 +260,19 @@ public class App {
 				&& count < 5);
 
 	}
-		
+
+	public static void clickWhileStillExists(String using) throws MalformedURLException, InterruptedException {
+		LOGGER.info("clickWhileStillExists(" + using + ")");
+		int count = 0;
+		do {
+			count++;
+			if (App.exists(using)) {
+				App.click(using);
+			}
+			Thread.sleep(1000);
+		} while (App.exists(using) == true
+				&& count < 5);
+
+	}
+
 }
