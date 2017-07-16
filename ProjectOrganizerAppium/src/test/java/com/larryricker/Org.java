@@ -166,8 +166,9 @@ public class Org {
 	 * @throws InterruptedException 
 	 */
 	public static void createNewProject(String projectName, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
-//		App.click("Add");
-		App.clickUntilOneOfTwoElementsPresent("Add", "Undo", "Continue");
+		App.click("Add");
+		Thread.sleep(10000);
+//		App.clickUntilOneOfTwoElementsPresent("Add", "Undo", "Continue");
 //		App.clickWhileStillExists("Add");
 		if (App.exists("Continue")) {
 			// Search
