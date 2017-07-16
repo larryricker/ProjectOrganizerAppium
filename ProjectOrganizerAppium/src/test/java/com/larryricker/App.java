@@ -254,7 +254,7 @@ public class App {
 			if (App.exists(using)) {
 				App.click(using);
 			}
-			Thread.sleep(1000);
+			Thread.sleep(10000);
 		} while (App.exists(waitForElement1) == false
 				&& App.exists(waitForElement2) == false
 				&& count < 5);
@@ -269,7 +269,7 @@ public class App {
 			if (App.exists(using)) {
 				App.click(using);
 			}
-			Thread.sleep(1000);
+			Thread.sleep(10000);
 		} while (App.exists(using) == true
 				&& count < 5);
 
