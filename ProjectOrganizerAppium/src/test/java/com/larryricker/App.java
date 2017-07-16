@@ -53,7 +53,6 @@ public class App {
 	 * capabilities for the current test suite
 	 */
 	public static void load() {
-
 		LOGGER.log(Level.INFO, "load() - loads app.properties");
 		Properties prop = new Properties();
 		InputStream input = null;
@@ -92,6 +91,7 @@ public class App {
 	 * @throws InterruptedException 
 	 */
 	public static void click(String using) throws MalformedURLException, InterruptedException {
+		LOGGER.info("click(" + using + ")");
 		Driver.getDriver().findElementByAccessibilityId(using).click();
 	}
 	/**
@@ -101,6 +101,7 @@ public class App {
 	 * @throws MalformedURLException
 	 */
 	public static WebElement find(String using) throws MalformedURLException {
+		LOGGER.info("find(" + using + ")");
 		WebElement thisElement = null;
 		try {
 			thisElement =  Driver.getDriver().findElementByAccessibilityId(using);
@@ -116,6 +117,7 @@ public class App {
 	 * @throws MalformedURLException
 	 */
 	public static boolean exists(String using) throws MalformedURLException {
+		LOGGER.info("exists(" + using + ")");
 		WebElement thisElement = find(using);
 		return thisElement != null;
 	}
@@ -155,6 +157,7 @@ public class App {
 	 * @throws WebDriverException 
 	 */
 	public static String snapAnyway(String screenName, TestReporter testReporter) throws WebDriverException, MalformedURLException, IOException {
+		LOGGER.info("snapAnyway(" + screenName + ")");
 		String fileName = App.snapAnyway(screenName);
 		testReporter.publishEntry(screenName, "\r\n\r\n[[ATTACHMENT|" + fileName + "]]\r\n\r\n");;
 		return fileName;
@@ -230,6 +233,7 @@ public class App {
 	 * @throws MalformedURLException
 	 */
 	public static boolean isDisplayed(String using) throws MalformedURLException {
+		LOGGER.info("isDisplayed(" + using + ")");
 		return isDisplayed(App.find(using));
 	}
 	/**
@@ -238,10 +242,12 @@ public class App {
 	 * @throws MalformedURLException
 	 */
 	public static void clear(String using) throws MalformedURLException {
+		LOGGER.info("clear(" + using + ")");
 		find(using).clear();
 	}
 
 	public static void clickUntilOneOfTwoElementsPresent(String using, String waitForElement1, String waitForElement2) throws MalformedURLException, InterruptedException {
+		LOGGER.info("clickUntilOneOfTwoElementsPresent(" + using + ", " + waitForElement1 + ", " + waitForElement2 + ")");
 		int count = 0;
 		do {
 			count++;
