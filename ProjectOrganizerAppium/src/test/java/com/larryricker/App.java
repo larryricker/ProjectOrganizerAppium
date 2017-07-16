@@ -240,5 +240,19 @@ public class App {
 	public static void clear(String using) throws MalformedURLException {
 		find(using).clear();
 	}
+
+	public static void clickUntilOneOfTwoElementsPresent(String using, String waitForElement1, String waitForElement2) throws MalformedURLException, InterruptedException {
+		int count = 0;
+		do {
+			count++;
+			if (App.exists(using)) {
+				App.click(using);
+			}
+			Thread.sleep(1000);
+		} while (App.exists(waitForElement1) 
+				&& App.exists(waitForElement2) 
+				&& count < 5);
+
+	}
 		
 }
