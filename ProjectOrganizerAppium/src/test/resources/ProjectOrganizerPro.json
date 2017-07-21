@@ -3,7 +3,6 @@
   "platformVersion": "10.3.2",
   "deviceName": "Larry's auto device",
   "udid": "auto",
-  "bundleId": "LR.Project-Organizer-Pro",
   "fullReset": true,
   "automationName": "XCUITest",
   "noReset": false,

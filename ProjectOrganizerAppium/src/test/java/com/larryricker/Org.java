@@ -195,26 +195,6 @@ public class Org {
 		}
 	}
 
-	/**
-	 * verify settings upsell message
-	 * @throws MalformedURLException
-	 */
-	public static void verifySettingsUpsellMessage() throws MalformedURLException {
-		verifyUpsellMessage("Buy PMIS Pro 4.99");
-		verifyUpsellMessage("Buy Progress Report Pro 4.99");
-		verifyUpsellMessage("Buy Project Organizer Pro 4.99");
-		verifyUpsellMessage("Buy Project Status Pro 4.99");
-		verifyUpsellMessage("Buy StatusReport4 Pro 3.99");
-		verifyUpsellMessage("Buy Project Info Pro 4.99");
-		verifyUpsellMessage("Buy Bad With Names Pro 0.99");
-		verifyUpsellMessage("Buy Good With Names Pro 0.99");
-		verifyUpsellMessage("Buy Student Organizer Pro 0.99");
-		verifyUpsellMessage("Buy Passing Notes Pro 4.99");
-		verifyUpsellMessage("Buy Job Hunt Pro 1.99");
-		verifyUpsellMessage("Buy Opportunity Organizer Pro 2.99");
-		verifyUpsellMessage("Buy Class Organizer Pro 0.99");
-	}
-
 	private static void verifyUpsellMessage(String using) throws MalformedURLException {
 		WebElement upsell;
 		upsell = App.find(using);
@@ -265,10 +245,36 @@ public class Org {
 		return bundleId.equals("LR.Progress-Report-Pro")
 				|| bundleId.equals("LR.StatusReport4-Pro")
 				|| bundleId.equals("LR.Project-Organizer-Pro")
+				|| bundleId.equals("LR.Project-Status-Pro")
 				|| bundleId.equals("LR.Project-Info-Pro")
 				|| bundleId.equals("LR.PMIS-Pro")
 				|| bundleId.equals("LR.Good-With-Names-Pro")
-				|| bundleId.equals("LR.Bad-With-Names-Pro");
+				|| bundleId.equals("LR.Bad-With-Names-Pro")
+				|| bundleId.equals("LR.Student-Organizer-Pro")
+				|| bundleId.equals("LR.Class-Organizer-Pro")
+				|| bundleId.equals("LR.Passing-Notes-Pro")
+				|| bundleId.equals("LR.Job-Hunt-Pro")
+				|| bundleId.equals("LR.Opportunity-Organizer-Pro");
+	}
+
+	/**
+	 * verify settings upsell message
+	 * @throws MalformedURLException
+	 */
+	public static void verifySettingsUpsellMessage() throws MalformedURLException {
+		verifyUpsellMessage("Buy PMIS Pro 4.99");
+		verifyUpsellMessage("Buy Progress Report Pro 4.99");
+		verifyUpsellMessage("Buy Project Organizer Pro 4.99");
+		verifyUpsellMessage("Buy Project Status Pro 4.99");
+		verifyUpsellMessage("Buy StatusReport4 Pro 3.99");
+		verifyUpsellMessage("Buy Project Info Pro 4.99");
+		verifyUpsellMessage("Buy Bad With Names Pro 0.99");
+		verifyUpsellMessage("Buy Good With Names Pro 0.99");
+		verifyUpsellMessage("Buy Student Organizer Pro 0.99");
+		verifyUpsellMessage("Buy Passing Notes Pro 4.99");
+		verifyUpsellMessage("Buy Job Hunt Pro 1.99");
+		verifyUpsellMessage("Buy Opportunity Organizer Pro 2.99");
+		verifyUpsellMessage("Buy Class Organizer Pro 0.99");
 	}
 
 	/**

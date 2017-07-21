@@ -214,7 +214,7 @@ public class App {
 			Thread.sleep(100);			
 			LOGGER.info("waitForAccessibilityId(" + using + ") count-> " + count);
 			thisElement = App.find(using);
-		} while(count < 100
+		} while(count < 20
 				&& thisElement == null);
 	}
 	/**
@@ -273,7 +273,7 @@ public class App {
 			Thread.sleep(1000);
 		} while (App.exists(waitForElement1) == false
 				&& App.exists(waitForElement2) == false
-				&& count < 10);
+				&& count < 3);
 
 	}
 	
@@ -288,7 +288,7 @@ public class App {
 			}
 			Thread.sleep(1000);
 		} while (App.exists(waitForElement1) == false
-				&& count < 10);
+				&& count < 3);
 
 	}
 	
