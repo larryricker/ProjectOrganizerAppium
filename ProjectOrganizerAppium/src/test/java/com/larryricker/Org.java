@@ -153,9 +153,22 @@ public class Org {
 		WebElement to = App.find("toField");
 //		to.clear();
 		to.sendKeys("larry@larryricker.com");
+		// handle double entry issue
+		int count = 0;
+		while ("larry@larryricker.comlarry@larryricker.com".equals(App.find("toField").getText())
+				&& count < 10) {
+			count++;
+			LOGGER.info("shareAppFromSettingsTableView() fixing email " + count );
+			App.clear("toField");
+			App.enterText("toField", "larry@larryricker.com");
+		}
 		App.snapAnyway("ShareApplication", testReporter);
-		// send email
-		App.click("Send");
+		if (count >= 10) {// send email
+			App.click("Cancel");
+		}
+		else {
+			App.click("Send");
+		}
 	}
 
 	/**
