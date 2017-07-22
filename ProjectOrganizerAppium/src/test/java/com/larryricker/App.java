@@ -243,7 +243,15 @@ public class App {
 	 */
 	public static void clear(String using) throws MalformedURLException {
 		LOGGER.info("clear(" + using + ")");
-		find(using).clear();
+		if (find(using) != null 
+				&& find(using).getText() != null
+				&& "".equals(find(using).getText()) != true) {
+			LOGGER.info("clear(" + using + ") "
+					+ "PERFORMING CLEAR OF "
+					+ "TEXT = :" + find(using).getText() + ": "
+					+ "toString = :" + find(using).toString() + ":");
+			find(using).clear();
+		}
 	}
 
 	public static void clickUntilOneOfTwoElementsPresent(String using, String waitForElement1, String waitForElement2) throws MalformedURLException, InterruptedException {
