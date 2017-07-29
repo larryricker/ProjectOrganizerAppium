@@ -5,7 +5,7 @@
   "udid": "auto",
   "fullReset": false,
   "automationName": "XCUITest",
-  "noReset": true,
+  "noReset": false,
   "clearSystemFiles": false,
   "xcodeOrgId": "N5BK33Q6AN",
   "xcodeSigningId": "iPhone Developer",
