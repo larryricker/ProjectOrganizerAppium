@@ -4,7 +4,7 @@
   "deviceName": "Larry's auto device",
   "udid": "270433ef388910978c920c5829cf393481ae9473",
   "fullReset": true,
-  "automationName": "Appium",
+  "automationName": "XCUITest",
   "noReset": false,
   "clearSystemFiles": false,
   "xcodeOrgId": "N5BK33Q6AN",
