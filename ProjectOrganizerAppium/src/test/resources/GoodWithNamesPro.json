@@ -2,7 +2,7 @@
   "platformName": "iOS",
   "platformVersion": "10.3.2",
   "deviceName": "Larry's auto device",
-  "udid": "auto",
+  "udid": "ab029f12f06ad7cab49c660180aeee784aed5327",
   "fullReset": true,
   "automationName": "XCUITest",
   "noReset": false,

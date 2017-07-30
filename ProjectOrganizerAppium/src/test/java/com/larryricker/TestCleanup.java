@@ -85,6 +85,7 @@ public class TestCleanup {
 	@ValueSource(strings = {
 			// "BadWithNames.json"
 			 "BadWithNamesPro.json"
+			 , "BadWithNamesProiPad.json"
 			// , "GoodWithNames.json"
 			 ,"GoodWithNamesPro.json", "PMIS-Pro.json"
 			// , "PMIS.json", "ProgressReport.json"

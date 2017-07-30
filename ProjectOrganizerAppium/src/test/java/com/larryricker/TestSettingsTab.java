@@ -66,6 +66,7 @@ public class TestSettingsTab {
 
 	@ParameterizedTest
 	@ValueSource(strings= {"BadWithNames.json"
+	, "BadWithNamesiPad.json", "BadWithNamesProiPad.json"
 	, "BadWithNamesPro.json", "GoodWithNames.json"
 	,"GoodWithNamesPro.json", "PMIS-Pro.json"
 	, "PMIS.json", "ProgressReport.json"
