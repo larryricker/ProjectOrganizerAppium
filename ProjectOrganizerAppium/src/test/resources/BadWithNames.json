@@ -1,6 +1,6 @@
 {
   "platformName": "iOS",
-  "platformVersion": "10.3.2",
+  "platformVersion": "9.3.5",
   "deviceName": "Larry's auto device",
   "udid": "auto",
   "fullReset": true,
