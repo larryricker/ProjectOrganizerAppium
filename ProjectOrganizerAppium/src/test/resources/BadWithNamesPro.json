@@ -3,7 +3,7 @@
   "platformVersion": "10.3.2",
   "deviceName": "Larry's auto device",
   "udid": "auto",
-  "fullReset": false,
+  "fullReset": true,
   "automationName": "XCUITest",
   "noReset": false,
   "clearSystemFiles": false,
