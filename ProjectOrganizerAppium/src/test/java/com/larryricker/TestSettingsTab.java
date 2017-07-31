@@ -66,15 +66,22 @@ public class TestSettingsTab {
 
 	@ParameterizedTest
 	@ValueSource(strings= {"BadWithNames.json"
-	, "BadWithNamesiPad.json", "BadWithNamesProiPad.json"
-	, "BadWithNamesPro.json", "GoodWithNames.json"
-	,"GoodWithNamesPro.json", "PMIS-Pro.json"
-	, "PMIS.json", "ProgressReport.json"
-	, "ProgressReportPro.json", "ProjectInfo.json"
-	, "ProjectInfoPro.json", "ProjectOrganizer.json"
-	, "ProjectOrganizerPro.json", "StatusReport4.json"
-	, "StatusReport4Pro.json", "ProjectStatus.json"
-	, "ProjectStatusPro.json"})
+	, "BadWithNamesPro.json", "BadWithNamesiPad.json"
+	, "BadWithNamesProiPad.json", "GoodWithNames.json"
+	,"GoodWithNamesPro.json", "GoodWithNamesiPad.json"
+	,"GoodWithNamesProiPad.json", "PMIS-Pro.json"
+	, "PMIS.json", "PMIS-ProiPad.json"
+	, "PMISiPad.json", "ProgressReport.json"
+	, "ProgressReportPro.json", "ProgressReportiPad.json"
+	, "ProgressReportProiPad.json", "ProjectInfo.json"
+	, "ProjectInfoPro.json", "ProjectInfoiPad.json"
+	, "ProjectInfoProiPad.json", "ProjectOrganizer.json"
+	, "ProjectOrganizerPro.json", "ProjectOrganizeriPad.json"
+	, "ProjectOrganizerProiPad.json", "StatusReport4.json"
+	, "StatusReport4Pro.json", "StatusReport4iPad.json"
+	, "StatusReport4ProiPad.json", "ProjectStatus.json"
+	, "ProjectStatusPro.json", "ProjectStatusiPad.json"
+	, "ProjectStatusProiPad.json"})
 	@DisplayName("Settings Tab")
 	public void testSettingsTab(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
 		Assert.assertNotNull("capabilities is not null", capabilities);
