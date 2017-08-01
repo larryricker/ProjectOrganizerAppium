@@ -59,17 +59,29 @@ public class Org {
 		}
 	}
 
-	private static void returnToProjectMainScreen() throws MalformedURLException, InterruptedException {
-		if (App.exists("Back")) {
-			App.click("Back");
+	public static void returnToProjectMainScreen() throws MalformedURLException, InterruptedException {
+		exitQuestionsScreen();
+		exitQuestionsSelection();
+		exitStatusSelection();
+	}
+
+	public static void exitStatusSelection() throws MalformedURLException, InterruptedException {
+		if (App.exists("Project")) {
+			App.click("Project");
 			App.waitForAccessibilityId("Edit");
 		}
+	}
+
+	public static void exitQuestionsSelection() throws MalformedURLException, InterruptedException {
 		if (App.exists("Defects")) {
 			App.click("Defects");
 			App.waitForAccessibilityId("Edit");
 		}
-		if (App.exists("Project")) {
-			App.click("Project");
+	}
+
+	public static void exitQuestionsScreen() throws MalformedURLException, InterruptedException {
+		if (App.exists("Back")) {
+			App.click("Back");
 			App.waitForAccessibilityId("Edit");
 		}
 	}
