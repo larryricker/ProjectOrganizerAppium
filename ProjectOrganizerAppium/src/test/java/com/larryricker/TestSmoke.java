@@ -124,7 +124,7 @@ public class TestSmoke {
 			App.click("projectCell");
 			
 		}
-		Org.addStatusReport("Test Cases");
+		Org.addStatusReport("Test Cases", testReporter);
 		// create a new question
 		// select first status report
 		App.click("Test Cases");

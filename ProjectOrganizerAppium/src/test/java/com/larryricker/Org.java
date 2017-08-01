@@ -219,14 +219,16 @@ public class Org {
 	/**
 	 * add status report
 	 * @param statusReportName
-	 * @throws MalformedURLException
 	 * @throws InterruptedException 
+	 * @throws IOException 
+	 * @throws WebDriverException 
 	 */
-	public static void addStatusReport(String statusReportName) throws MalformedURLException, InterruptedException {
+	public static void addStatusReport(String statusReportName, TestReporter testReporter) throws InterruptedException, WebDriverException, IOException {
 		// create a new status report
 		App.click("Add");
 		// statusToAdd
 		App.enterText("statusToAdd", statusReportName);
+		App.snapAnyway("AddStatusReport", testReporter);
 		// save status
 		App.click("Done");
 	}
