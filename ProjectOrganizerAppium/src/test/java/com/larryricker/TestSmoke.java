@@ -140,8 +140,10 @@ public class TestSmoke {
 		Org.addTestCase("Aborted purchase","After purchase app\nCancel purchase\nShould return to free version not stay in paid version.");
 		// reorder questions
 		// exit questions
+		Org.exitQuestionsSelection();
 		// reorder status
 		// exit status
+		Org.exitStatusSelection();
 		// reorder project
 		// search for a question
 		// drill down search to status
