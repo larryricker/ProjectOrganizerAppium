@@ -37,6 +37,7 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.TestReporter;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -118,8 +119,13 @@ public class App {
 	 */
 	public static boolean exists(String using) throws MalformedURLException {
 		LOGGER.info("exists(" + using + ")");
-		WebElement thisElement = find(using);
-		return thisElement != null;
+		try {
+			WebElement thisElement = find(using);
+			return thisElement != null;
+		} catch (SessionNotCreatedException e) {
+			LOGGER.info("exists(" + using + ") returning false, message=" + e.getMessage());
+			return false;
+		}
 	}
 	/**
 	 * enter text 'projectName' in text field with accessibility id of using

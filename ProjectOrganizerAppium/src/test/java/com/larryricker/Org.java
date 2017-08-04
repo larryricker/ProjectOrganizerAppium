@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.TestReporter;
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
@@ -41,18 +42,21 @@ public class Org {
 
 	/**
 	 * Clicks on settings button at the bottom of the page
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws WebDriverException 
+	 * 
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws WebDriverException
 	 */
-	static void gotoSettingsTableView(TestReporter testReporter) throws InterruptedException, WebDriverException, IOException {
+	static void gotoSettingsTableView(TestReporter testReporter)
+			throws InterruptedException, WebDriverException, IOException {
 		handleRateMeReminder(testReporter);
 		returnToProjectMainScreen();
 		App.click("Settings");
 		App.waitForAccessibilityId("Project");
 	}
 
-	private static void handleRateMeReminder(TestReporter testReporter) throws MalformedURLException, IOException, InterruptedException {
+	private static void handleRateMeReminder(TestReporter testReporter)
+			throws MalformedURLException, IOException, InterruptedException {
 		if (App.exists("Remind me later")) {
 			App.snapAnyway("RemindMeLater", testReporter);
 			App.click("Remind me later");
@@ -88,8 +92,9 @@ public class Org {
 
 	/**
 	 * exit settings tab
+	 * 
 	 * @throws MalformedURLException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
 	public static void exitSettingsTableView() throws MalformedURLException, InterruptedException {
 		App.click("Project");
@@ -97,12 +102,14 @@ public class Org {
 
 	/**
 	 * get the bundle ID for the app being tested
+	 * 
 	 * @return
-	 * @throws IOException 
-	 * @throws WebDriverException 
-	 * @throws InterruptedException 
+	 * @throws IOException
+	 * @throws WebDriverException
+	 * @throws InterruptedException
 	 */
-	public static String getBundleId(TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
+	public static String getBundleId(TestReporter testReporter)
+			throws WebDriverException, IOException, InterruptedException {
 		Org.gotoSettingsTableView(testReporter);
 		App.snapAnyway("SettingsScreen", testReporter);
 		String bundleId = "";
@@ -144,7 +151,7 @@ public class Org {
 	}
 
 	private static String isThisTheBundleId(String bundleId, String using) throws MalformedURLException {
-//		LOGGER.info("bundleId bundleId-> " + bundleId + ", using->" + using);
+		// LOGGER.info("bundleId bundleId-> " + bundleId + ", using->" + using);
 		if ("".equals(bundleId) && App.exists(using)) {
 			bundleId = using;
 		}
@@ -153,53 +160,55 @@ public class Org {
 
 	/**
 	 * Share app by email
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws WebDriverException 
+	 * 
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws WebDriverException
 	 */
-	public static void shareAppFromSettingsTableView(TestReporter testReporter) throws InterruptedException, WebDriverException, IOException {
+	public static void shareAppFromSettingsTableView(TestReporter testReporter)
+			throws InterruptedException, WebDriverException, IOException {
 		// share app
 		App.click("Share");
 		App.waitForAccessibilityId("toField");
 		// toField - enter text
 		WebElement to = App.find("toField");
-//		to.clear();
+		// to.clear();
 		to.sendKeys("larry@larryricker.com");
 		// handle double entry issue
 		int count = 0;
-		while ("larry@larryricker.comlarry@larryricker.com".equals(App.find("toField").getText())
-				&& count < 10) {
+		while ("larry@larryricker.comlarry@larryricker.com".equals(App.find("toField").getText()) && count < 10) {
 			count++;
-			LOGGER.info("shareAppFromSettingsTableView() fixing email " + count );
+			LOGGER.info("shareAppFromSettingsTableView() fixing email " + count);
 			App.clear("toField");
 			App.enterText("toField", "larry@larryricker.com");
 		}
 		App.snapAnyway("ShareApplication", testReporter);
 		if (count >= 10) {// send email
 			App.click("Cancel");
-		}
-		else {
+		} else {
 			App.click("Send");
 		}
 	}
 
 	/**
 	 * Creates a new project
+	 * 
 	 * @param projectName
-	 * @throws IOException 
-	 * @throws WebDriverException 
-	 * @throws InterruptedException 
+	 * @throws IOException
+	 * @throws WebDriverException
+	 * @throws InterruptedException
 	 */
-	public static void createNewProject(String projectName, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
-//		App.click("Add");
-//		Thread.sleep(10000);
-//		App.clickUntilOneOfTwoElementsPresent("Add", "Undo", "Continue");
+	public static void createNewProject(String projectName, TestReporter testReporter)
+			throws WebDriverException, IOException, InterruptedException {
+		// App.click("Add");
+		// Thread.sleep(10000);
+		// App.clickUntilOneOfTwoElementsPresent("Add", "Undo", "Continue");
 		App.waitThenClickUntilOneOfTwoElementsPresent("Add", "Undo", "Continue");
-//		App.clickWhileStillExists("Add");
+		// App.clickWhileStillExists("Add");
 		if (App.exists("Continue")) {
 			// Search
-//			App.click("Search");
-//			App.click("Cancel");
+			// App.click("Search");
+			// App.click("Cancel");
 			// Unlimited Projects
 			// Share All Projects
 			// Backup All Projects
@@ -207,15 +216,14 @@ public class Org {
 			// Continue
 			App.click("Continue");
 			Thread.sleep(10000);
-		}
-		else {
+		} else {
 			// projectNameEdit
 			App.waitForAccessibilityId("projectNameEdit");
 			App.enterText("projectNameEdit", projectName);
-			App.snapAnyway("NewProjectNameView", testReporter);			// name project
+			App.snapAnyway("NewProjectNameView", testReporter); // name project
 			// click on done button
 			App.click("Done");
-//			Thread.sleep(10000);
+			// Thread.sleep(10000);
 			App.waitThenClickUntilOneElementPresent("Done", "Add");
 		}
 	}
@@ -230,12 +238,14 @@ public class Org {
 
 	/**
 	 * add status report
+	 * 
 	 * @param statusReportName
-	 * @throws InterruptedException 
-	 * @throws IOException 
-	 * @throws WebDriverException 
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * @throws WebDriverException
 	 */
-	public static void addStatusReport(String statusReportName, TestReporter testReporter) throws InterruptedException, WebDriverException, IOException {
+	public static void addStatusReport(String statusReportName, TestReporter testReporter)
+			throws InterruptedException, WebDriverException, IOException {
 		// create a new status report
 		App.click("Add");
 		// statusToAdd
@@ -247,12 +257,14 @@ public class Org {
 
 	/**
 	 * add test case
+	 * 
 	 * @param statusReportTitle
 	 * @param answer
 	 * @throws MalformedURLException
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
-	public static void addTestCase(String statusReportTitle, String answer) throws MalformedURLException, InterruptedException {
+	public static void addTestCase(String statusReportTitle, String answer)
+			throws MalformedURLException, InterruptedException {
 		App.click("Add");
 		App.enterText("statusReportTitle", statusReportTitle);
 		String using = "questionTextField";
@@ -265,27 +277,23 @@ public class Org {
 
 	/**
 	 * delete all rows of the tableview
+	 * 
 	 * @param bundleId
 	 * @return
 	 */
 	public static boolean isProVersion(String bundleId) {
-		return bundleId.equals("LR.Progress-Report-Pro")
-				|| bundleId.equals("LR.StatusReport4-Pro")
-				|| bundleId.equals("LR.Project-Organizer-Pro")
-				|| bundleId.equals("LR.Project-Status-Pro")
-				|| bundleId.equals("LR.Project-Info-Pro")
-				|| bundleId.equals("LR.PMIS-Pro")
-				|| bundleId.equals("LR.Good-With-Names-Pro")
-				|| bundleId.equals("LR.Bad-With-Names-Pro")
-				|| bundleId.equals("LR.Student-Organizer-Pro")
-				|| bundleId.equals("LR.Class-Organizer-Pro")
-				|| bundleId.equals("LR.Passing-Notes-Pro")
-				|| bundleId.equals("LR.Job-Hunt-Pro")
+		return bundleId.equals("LR.Progress-Report-Pro") || bundleId.equals("LR.StatusReport4-Pro")
+				|| bundleId.equals("LR.Project-Organizer-Pro") || bundleId.equals("LR.Project-Status-Pro")
+				|| bundleId.equals("LR.Project-Info-Pro") || bundleId.equals("LR.PMIS-Pro")
+				|| bundleId.equals("LR.Good-With-Names-Pro") || bundleId.equals("LR.Bad-With-Names-Pro")
+				|| bundleId.equals("LR.Student-Organizer-Pro") || bundleId.equals("LR.Class-Organizer-Pro")
+				|| bundleId.equals("LR.Passing-Notes-Pro") || bundleId.equals("LR.Job-Hunt-Pro")
 				|| bundleId.equals("LR.Opportunity-Organizer-Pro");
 	}
 
 	/**
 	 * verify settings upsell message
+	 * 
 	 * @throws MalformedURLException
 	 */
 	public static void verifySettingsUpsellMessage() throws MalformedURLException {
@@ -306,34 +314,35 @@ public class Org {
 
 	/**
 	 * delete all table view rows
+	 * 
 	 * @param deleteButtonName
 	 * @throws MalformedURLException
 	 * @throws InterruptedException
 	 */
-	public static void deleteAllTableViewRows(String deleteButtonName) throws MalformedURLException, InterruptedException {
+	public static void deleteAllTableViewRows(String deleteButtonName)
+			throws MalformedURLException, InterruptedException {
 		List<WebElement> dashes = null;
 		int numberOfDashes = 0;
 		do {
-			// click on - 
+			// click on -
 			// dash = App.find("-");
 			Org.editMode();
 			dashes = Driver.getDriver().findElementsByAccessibilityId(deleteButtonName);
 			numberOfDashes = dashes.size();
 			LOGGER.info("Number of " + deleteButtonName + " Dash Buttons found->" + numberOfDashes);
-			for (int i = (numberOfDashes > 4 ? 4 : numberOfDashes); --i >=0;) {
+			for (int i = (numberOfDashes > 4 ? 4 : numberOfDashes); --i >= 0;) {
 				WebElement dash = dashes.get(i);
 				if (dash.isDisplayed()) {
 					dash.click();
 					App.click("Delete");
 				}
 			}
-		} while (numberOfDashes > 0 
-				&& dashes.isEmpty() == false
-				&& dashes.get(0).isDisplayed());
+		} while (numberOfDashes > 0 && dashes.isEmpty() == false && dashes.get(0).isDisplayed());
 	}
 
 	/**
 	 * edit mode of table view
+	 * 
 	 * @throws MalformedURLException
 	 * @throws InterruptedException
 	 */
@@ -345,14 +354,14 @@ public class Org {
 
 	/**
 	 * exit edit mode of table view and return to selection mode
+	 * 
 	 * @throws MalformedURLException
 	 * @throws InterruptedException
 	 */
 	public static void exitEditMode() throws MalformedURLException, InterruptedException {
 		if (App.exists("Done")) {
 			App.click("Done");
-		}
-		else if (App.exists("Edit")) {
+		} else if (App.exists("Edit")) {
 			editMode();
 		}
 	}
