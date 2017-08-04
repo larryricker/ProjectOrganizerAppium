@@ -61,6 +61,10 @@ public class Org {
 			App.snapAnyway("RemindMeLater", testReporter);
 			App.click("Remind me later");
 		}
+		if (App.exists("OK")) {
+			App.snapAnyway("NoMailAccounts", testReporter);
+			App.click("OK");
+		}
 	}
 
 	public static void returnToProjectMainScreen() throws MalformedURLException, InterruptedException {
