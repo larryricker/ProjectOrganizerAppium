@@ -320,11 +320,12 @@ public class Org {
 	 * delete all table view rows
 	 * 
 	 * @param deleteButtonName
-	 * @throws MalformedURLException
 	 * @throws InterruptedException
+	 * @throws IOException 
 	 */
-	public static void deleteAllTableViewRows(String deleteButtonName)
-			throws MalformedURLException, InterruptedException {
+	public static void deleteAllTableViewRows(String deleteButtonName, TestReporter testReporter)
+			throws InterruptedException, IOException {
+		Org.handleRateMeReminder(testReporter);
 		List<WebElement> dashes = null;
 		int numberOfDashes = 0;
 		do {

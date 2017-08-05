@@ -104,41 +104,42 @@ public class TestCleanup {
 			throws WebDriverException, IOException, InterruptedException {
 		Assert.assertNotNull("capabilities is not null", capabilities);
 		System.setProperty("TEST_CAPABILITIES", capabilities);
+
 		// Click on edit button
 		// check if - exists
 		do {
-			Org.deleteAllTableViewRows("Delete Reskin");
-			Org.deleteAllTableViewRows("Delete Enhancements");
-			Org.deleteAllTableViewRows("Delete Uplift");
-			Org.deleteAllTableViewRows("Delete Search Optimization");
-			Org.deleteAllTableViewRows("Delete Metrics");
-			Org.deleteAllTableViewRows("Delete Defects");
-			Org.deleteAllTableViewRows("Delete Human Factors");
-			Org.deleteAllTableViewRows("Delete Routing");
-			Org.deleteAllTableViewRows("Delete Automated Testing");
-			Org.deleteAllTableViewRows("Delete Content");
-			Org.deleteAllTableViewRows("Delete Routing");
-			Org.deleteAllTableViewRows("Delete Desktop");
-			Org.deleteAllTableViewRows("Delete Upgrade");
-			Org.deleteAllTableViewRows("Delete Integration");
-			Org.deleteAllTableViewRows("Delete Biometrics");
+			Org.deleteAllTableViewRows("Delete Reskin", testReporter);
+			Org.deleteAllTableViewRows("Delete Enhancements", testReporter);
+			Org.deleteAllTableViewRows("Delete Uplift", testReporter);
+			Org.deleteAllTableViewRows("Delete Search Optimization", testReporter);
+			Org.deleteAllTableViewRows("Delete Metrics", testReporter);
+			Org.deleteAllTableViewRows("Delete Defects", testReporter);
+			Org.deleteAllTableViewRows("Delete Human Factors", testReporter);
+			Org.deleteAllTableViewRows("Delete Routing", testReporter);
+			Org.deleteAllTableViewRows("Delete Automated Testing", testReporter);
+			Org.deleteAllTableViewRows("Delete Content", testReporter);
+			Org.deleteAllTableViewRows("Delete Routing", testReporter);
+			Org.deleteAllTableViewRows("Delete Desktop", testReporter);
+			Org.deleteAllTableViewRows("Delete Upgrade", testReporter);
+			Org.deleteAllTableViewRows("Delete Integration", testReporter);
+			Org.deleteAllTableViewRows("Delete Biometrics", testReporter);
 			// temporary to clean up mess left by 
 			// keyStrategy setValue
-			Org.deleteAllTableViewRows("Delete ReskinReskin");
-			Org.deleteAllTableViewRows("Delete EnhancementsEnhancements");
-			Org.deleteAllTableViewRows("Delete UpliftUplift");
-			Org.deleteAllTableViewRows("Delete Search OptimizationSearch Optimization");
-			Org.deleteAllTableViewRows("Delete MetricsMetrics");
-			Org.deleteAllTableViewRows("Delete DefectsDefects");
-			Org.deleteAllTableViewRows("Delete Human FactorsHuman Factors");
-			Org.deleteAllTableViewRows("Delete RoutingRouting");
-			Org.deleteAllTableViewRows("Delete Automated TestingAutomated Testing");
-			Org.deleteAllTableViewRows("Delete ContentContent");
-			Org.deleteAllTableViewRows("Delete RoutingRouting");
-			Org.deleteAllTableViewRows("Delete DesktopDesktop");
-			Org.deleteAllTableViewRows("Delete UpgradeUpgrade");
-			Org.deleteAllTableViewRows("Delete IntegrationIntegration");
-			Org.deleteAllTableViewRows("Delete BiometricsBiometrics");
+			Org.deleteAllTableViewRows("Delete ReskinReskin", testReporter);
+			Org.deleteAllTableViewRows("Delete EnhancementsEnhancements", testReporter);
+			Org.deleteAllTableViewRows("Delete UpliftUplift", testReporter);
+			Org.deleteAllTableViewRows("Delete Search OptimizationSearch Optimization", testReporter);
+			Org.deleteAllTableViewRows("Delete MetricsMetrics", testReporter);
+			Org.deleteAllTableViewRows("Delete DefectsDefects", testReporter);
+			Org.deleteAllTableViewRows("Delete Human FactorsHuman Factors", testReporter);
+			Org.deleteAllTableViewRows("Delete RoutingRouting", testReporter);
+			Org.deleteAllTableViewRows("Delete Automated TestingAutomated Testing", testReporter);
+			Org.deleteAllTableViewRows("Delete ContentContent", testReporter);
+			Org.deleteAllTableViewRows("Delete RoutingRouting", testReporter);
+			Org.deleteAllTableViewRows("Delete DesktopDesktop", testReporter);
+			Org.deleteAllTableViewRows("Delete UpgradeUpgrade", testReporter);
+			Org.deleteAllTableViewRows("Delete IntegrationIntegration", testReporter);
+			Org.deleteAllTableViewRows("Delete BiometricsBiometrics", testReporter);
 		} while (App.exists("More Info"));
 		// when no more -
 		// click on Done if it exists
