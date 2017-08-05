@@ -100,14 +100,14 @@ public class TestSmoke {
 		Org.createNewProject("Search Optimization", testReporter);
 		if (Org.isProVersion(bundleId)) {
 			Org.createNewProject("Metrics", testReporter);
-			Org.createNewProject("Defects", testReporter);
-			Org.createNewProject("Human Factors", testReporter);
-			Org.createNewProject("Routing", testReporter);
-			Org.createNewProject("Automated Testing", testReporter);
-			Org.createNewProject("Biometrics", testReporter);
-			Org.createNewProject("Content", testReporter);
-			Org.createNewProject("Routing", testReporter);
-			Org.createNewProject("Desktop", testReporter);
+//			Org.createNewProject("Defects", testReporter);
+//			Org.createNewProject("Human Factors", testReporter);
+//			Org.createNewProject("Routing", testReporter);
+//			Org.createNewProject("Automated Testing", testReporter);
+//			Org.createNewProject("Biometrics", testReporter);
+//			Org.createNewProject("Content", testReporter);
+//			Org.createNewProject("Routing", testReporter);
+//			Org.createNewProject("Desktop", testReporter);
 			Org.createNewProject("Upgrade", testReporter);
 			Org.createNewProject("Integration", testReporter);
 		}
