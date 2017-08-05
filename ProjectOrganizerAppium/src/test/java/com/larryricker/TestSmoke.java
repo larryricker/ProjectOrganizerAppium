@@ -131,13 +131,13 @@ public class TestSmoke {
 		Org.addTestCase("Branchio", "Implement safari API on mobile device to\nhit branchio link and have it hit the\nuniversal link and redirect to the device.");
 		Org.addTestCase("Install Backup", "Open backup file off Amazon AFS website\nadds in S3 to download and install on\ndevice.");
 		Org.addTestCase("Create Backup On All Three Levels", "Send emails.");
-		Org.addTestCase("Send Memo With Minutes Of the Meeting", "Send email.");
-		Org.addTestCase("Orientation","Rotate orientation on each screen and\nverify the fields and buttons do not shift off\nthe screen.  It looks good, symmetrically\naligned and is functional.");
+//		Org.addTestCase("Send Memo With Minutes Of the Meeting", "Send email.");
+//		Org.addTestCase("Orientation","Rotate orientation on each screen and\nverify the fields and buttons do not shift off\nthe screen.  It looks good, symmetrically\naligned and is functional.");
 		Org.addTestCase("Localization","Switch app to Spain, Mexico\nSwitch app to England, Australia, Canada\nSwitch app to Germany\nSwitch app to France\nSwitch app to Italy.");
-		Org.addTestCase("Reorder","Reorder projects\nReorder statuses\nReorder questions\nLeave View and return and verify order\npersists.");
-		Org.addTestCase("Upgrade Application - Destructive", "Purchase upgrade app on settings tab\nPurchase upgraded app when exceed\nnumber of allowed projects\nPurchase app when on new project or\nrename project tab\nPurchase app when on new status report or rename\nstatus report tab\nThese tests will need the compiled app as an IPA file\nand have the app reinstalled after each test.");
-		Org.addTestCase("Create New Status Report","Create new status report call test cases.\nAdd test cases to progress report.");
-		Org.addTestCase("Aborted purchase","After purchase app\nCancel purchase\nShould return to free version not stay in paid version.");
+//		Org.addTestCase("Reorder","Reorder projects\nReorder statuses\nReorder questions\nLeave View and return and verify order\npersists.");
+//		Org.addTestCase("Upgrade Application - Destructive", "Purchase upgrade app on settings tab\nPurchase upgraded app when exceed\nnumber of allowed projects\nPurchase app when on new project or\nrename project tab\nPurchase app when on new status report or rename\nstatus report tab\nThese tests will need the compiled app as an IPA file\nand have the app reinstalled after each test.");
+//		Org.addTestCase("Create New Status Report","Create new status report call test cases.\nAdd test cases to progress report.");
+//		Org.addTestCase("Aborted purchase","After purchase app\nCancel purchase\nShould return to free version not stay in paid version.");
 		// reorder questions
 		// exit questions
 		Org.exitQuestionsSelection();

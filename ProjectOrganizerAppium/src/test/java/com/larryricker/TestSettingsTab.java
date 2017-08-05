@@ -96,7 +96,7 @@ public class TestSettingsTab {
 		// Click on rate our app
 		// App.click(" Rate our app"); // not testable at this time
 		// exit app rating
-		Org.shareAppFromSettingsTableView(testReporter);
+//		Org.shareAppFromSettingsTableView(testReporter);
 		// restore purchases - skip for now
 		Org.exitSettingsTableView();
 	}
