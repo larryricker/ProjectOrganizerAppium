@@ -83,15 +83,16 @@ public class TestCleanup {
 	// StatusReport4Pro and ProjectStatusPro have lists of projects to delete
 	@ParameterizedTest
 	@ValueSource(strings = {
-			"BadWithNames6p.json"
-			, "BadWithNamesPro6p.json", "GoodWithNames6p.json"
-			,"GoodWithNamesPro6p.json", "PMIS6p.json"
-			, "PMIS-Pro6p.json", "ProgressReport6p.json"
-			, "ProgressReportPro6p.json", "ProjectInfo6p.json"
-			, "ProjectInfoPro6p.json", "StatusReport46p.json"
-			, "StatusReport4Pro6p.json"// , "ProjectStatus6p.json"
+//			"BadWithNames6p.json"
+//			, "BadWithNamesPro6p.json", "GoodWithNames6p.json"
+//			,"GoodWithNamesPro6p.json", "PMIS6p.json"
+//			, "PMIS-Pro6p.json", "ProgressReport6p.json"
+//			, "ProgressReportPro6p.json", "ProjectInfo6p.json"
+//			, "ProjectInfoPro6p.json", "StatusReport46p.json"
+//			, "StatusReport4Pro6p.json"// , "ProjectStatus6p.json"
 			// , "ProjectStatusPro6p.json"
-			, "BadWithNames.json", "BadWithNamesPro.json"
+//			, 
+			"BadWithNames.json", "BadWithNamesPro.json"
 			, "GoodWithNames.json"
 			, "GoodWithNamesPro.json", "PMIS-Pro.json"
 			, "PMIS.json", "ProgressReport.json"
