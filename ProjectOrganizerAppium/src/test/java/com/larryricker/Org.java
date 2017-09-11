@@ -270,6 +270,13 @@ public class Org {
 	public static void addTestCase(String statusReportTitle, String answer)
 			throws MalformedURLException, InterruptedException {
 		App.click("Add");
+		// handle prompt for Reminders and Calendar access
+		if (App.exists("OK")) {
+			App.clickWhileStillExists("OK");
+		}
+		if (App.exists("OK")) {
+			App.clickWhileStillExists("OK");
+		}
 		App.enterText("statusReportTitle", statusReportTitle);
 		String using = "questionTextField";
 		App.clear(using);
