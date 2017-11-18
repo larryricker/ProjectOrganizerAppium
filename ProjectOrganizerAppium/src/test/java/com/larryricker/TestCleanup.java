@@ -29,7 +29,7 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -122,7 +122,7 @@ public class TestCleanup {
 	@DisplayName("Cleanup Test")
 	public void testCleanup(String capabilities, TestInfo info, TestReporter testReporter)
 			throws WebDriverException, IOException, InterruptedException {
-		Assert.assertNotNull("capabilities is not null", capabilities);
+		Assertions.assertNotNull("capabilities is not null", capabilities);
 		System.setProperty("TEST_CAPABILITIES", capabilities);
 
 		// Click on edit button

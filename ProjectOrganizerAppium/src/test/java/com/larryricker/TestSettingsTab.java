@@ -26,7 +26,7 @@ import java.net.MalformedURLException;
 
 import java.util.logging.Logger;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -104,7 +104,7 @@ public class TestSettingsTab {
 	})
 	@DisplayName("Settings Tab")
 	public void testSettingsTab(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
-		Assert.assertNotNull("capabilities is not null", capabilities);
+		Assertions.assertNotNull("capabilities is not null", capabilities);
 		testReporter.publishEntry(info.getDisplayName(), "Capabilities under test "+ capabilities);
 		System.setProperty("TEST_CAPABILITIES", capabilities);
 		// identify current app
