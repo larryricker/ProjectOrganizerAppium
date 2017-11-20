@@ -86,7 +86,6 @@ public class TestSmoke {
 //		, "PMIS.json", "ProgressReport.json"
 //		, "ProgressReportPro.json", "ProjectInfo.json"
 //		, "ProjectInfoPro.json"
-		"ProjectOrganizer.json", "ProjectOrganizerPro.json"
 //		, "StatusReport4.json"
 //		, "StatusReport4Pro.json", "ProjectStatus.json"
 //		, "ProjectStatusPro.json"
@@ -100,12 +99,13 @@ public class TestSmoke {
 //		, "ProgressReportProiPad.json"
 //		, "ProjectInfoiPad.json"
 //		, "ProjectInfoProiPad.json"
-		, "ProjectOrganizeriPad.json"
-		, "ProjectOrganizerProiPad.json"
 //		, "StatusReport4iPad.json"
 //		, "StatusReport4ProiPad.json"
 //		, "ProjectStatusiPad.json"
 //		, "ProjectStatusProiPad.json"
+//			"ProjectOrganizer.json", "ProjectOrganizerPro.json"
+		"ProjectOrganizeriPad.json"
+		, "ProjectOrganizerProiPad.json"
 	})
 	@DisplayName("Smoke Test")
 	public void testSmoke(String capabilities, TestInfo info, TestReporter testReporter) throws WebDriverException, IOException, InterruptedException {
